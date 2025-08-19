@@ -1,0 +1,181 @@
+@import url("https://fonts.cdnfonts.com/css/general-sans");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "circular", sans-serif;
+  width: 100dvw;
+  background-color: #fff;
+  overflow-x: hidden;
+}
+
+@layer base {
+  @font-face {
+    font-family: "Circular";
+    src: url("/fonts/circularweb-book.woff2") format("woff2");
+  }
+  @font-face {
+    font-family: "False";
+    src: url("/fonts/ClashDisplay-Bold.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "Justus";
+    src: url("/fonts/Justus-Versalitas.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: "SilkSerif";
+    src: url("/fonts/silkserif-regularitalic-webfont.ttf") format("truetype");
+  }
+}
+
+@layer utilities {
+  .bordr {
+    border-radius: 50%;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 1.5s ease-in-out;
+  }
+
+  .rr {
+    border-radius: 40px;
+  }
+
+  .bc {
+    background-image: url("./public/img/ss3.png");
+    background-image: "cover";
+    background-position: "center";
+    background-repeat: "no-repeat";
+  }
+
+  .special-font ss {
+    font-family: "silkserif";
+  }
+
+  .special-font cc {
+    font-family: "circular";
+  }
+  .special-font sss {
+    font-family: "silkserif";
+    color: limegreen;
+  }
+
+  /* Review component styles */
+  .bg-primary {
+    background-color: #1f2937;
+  }
+
+  .text-primary-foreground {
+    color: #f9fafb;
+  }
+
+  .border-primary {
+    border-color: #1f2937;
+  }
+
+  .bg-muted {
+    background-color: #f3f4f6;
+  }
+
+  .text-muted-foreground {
+    color: #6b7280;
+  }
+
+  .border-border,
+  .border-gray-300 {
+    border-color: #d1d5db;
+  }
+
+  .bg-background {
+    background-color: #ffffff;
+  }
+
+  .text-foreground {
+    color: #1f2937;
+  }
+
+  .hover\:border-blue-400:hover {
+    border-color: #60a5fa;
+  }
+
+  .hover\:bg-primary:hover {
+    background-color: #1f2937;
+  }
+
+  .hover\:text-primary-foreground:hover {
+    color: #f9fafb;
+  }
+
+  .text-primary-foreground\/80 {
+    color: rgba(249, 250, 251, 0.8);
+  }
+
+  .bg-muted\/30 {
+    background-color: rgba(243, 244, 246, 0.3);
+  }
+
+  .bg-border {
+    background-color: #d1d5db;
+  }
+
+  .focus-visible\:ring-2:focus-visible {
+    --tw-ring-width: 2px;
+  }
+
+  .focus-visible\:ring-ring:focus-visible {
+    --tw-ring-color: #1f2937;
+  }
+
+  .focus-visible\:ring-offset-2:focus-visible {
+    --tw-ring-offset-width: 2px;
+  }
+
+  /* Custom utility classes for the review cards */
+  .testimonial-card-shadow {
+    box-shadow: 0px 8px 0px 4px #d1d5db;
+  }
+
+  .testimonial-img-shadow {
+    box-shadow: 3px 3px 0px #ffffff;
+  }
+
+  .hover\:border-green-600:hover {
+    border-color: #16a34a;
+  }
+
+  .text-green-600 {
+    color: #16a34a;
+  }
+
+  .text-green-500\/80 {
+    color: rgba(34, 197, 94, 0.8);
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #10b981, #3b82f6, #8b5cf6, #ec4899);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%,
+    100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  .tt2 {
+    background-image: url("./public/img/ss7.png");
+    background-image: "cover";
+    background-position: "center";
+    background-repeat: "no-repeat";
+  }
+}
