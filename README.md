@@ -1,12 +1,24 @@
-# React + Vite
+# 🧠🌿🧘🧘‍♀️ Mantra: A Comprehensive Mental Health Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Mantra is a digital platform offering accessible mental health resources.  
+It provides a safe space for users to **track their emotional state**, access **therapeutic tools**, and connect with a **supportive community**.  
+This project aims to address the growing need for digital mental health solutions.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Tech Stack
+- **React + Vite** – Fast and modern frontend development  
+- **Tailwind CSS** – Utility-first responsive styling  
+- **Three.js** – 3D elements and immersive visuals  
+- **GSAP** – Smooth animations and interactions  
+- **HTML5 & CSS3** – Core structure and design
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## ✨ Features
+- 🧘 Track and reflect on emotional well-being  
+- 🎨 Interactive and calming UI with animations  
+- 🌐 Safe and supportive digital environment  
+- 📊 Tools and resources for better mental health  
+
+---
