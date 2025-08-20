@@ -25,14 +25,14 @@ const defaultTestimonials = [
     tempId: 2,
     testimonial:
       "Busy mom life meant no time for me. This platform's audio and chatbot support is perfect for my schedule. A real help.",
-    by: "Emily Rodriguez",
+    by: "Emily R",
     imgSrc: "https://i.pravatar.cc/150?img=27",
   },
   {
     tempId: 3,
     testimonial:
       "Online video here make getting support so easy and effective. The blogs are a bonus. Game changer!",
-    by: "David K.",
+    by: "Ravi K.",
     imgSrc: "https://i.pravatar.cc/150?img=3",
   },
   {
