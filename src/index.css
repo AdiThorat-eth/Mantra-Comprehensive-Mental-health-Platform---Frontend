@@ -43,11 +43,16 @@ body {
     border-radius: 40px;
   }
 
+  .rrCenter {
+    left: calc(50% - 8px);
+    transform: translateX(-50%);
+  }
+
   .bc {
     background-image: url("./public/img/ss3.png");
-    background-image: "cover";
-    background-position: "center";
-    background-repeat: "no-repeat";
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   .special-font ss {

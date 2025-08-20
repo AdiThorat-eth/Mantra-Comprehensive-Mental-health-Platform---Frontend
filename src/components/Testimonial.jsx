@@ -51,7 +51,7 @@ const Testimonial = () => {
   return (
     <div className="h-screen w-screen flex flex-col justify-center items-center relative">
       {/* Section Header */}
-      <div className="h-[96vh] w-[96vw] relative justify-center item-center rr tt2">
+      <div className="absolute h-[96vh] w-[96vw] rr tt2 rrCenter flex flex-col justify-center items-center overflow-y-auto">
         <div className="text-center mb-4 mt-10">
           <h2 className="text-5xl font-bold mb-4">Testimonials</h2>
           <p className="special-font text-xl max-w-2xl mx-auto opacity-70">
