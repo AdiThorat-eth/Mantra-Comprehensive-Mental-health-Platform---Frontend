@@ -14,8 +14,8 @@ const MiniNavbar = () => {
   const navigationItems = [
     { name: "home", href: "#home" },
     { name: "services", href: "#services" },
-    { name: "Testimonial", href: "#testimonial"},
-    { name: "Buy", href: "#price"},
+    { name: "Testimonial", href: "#testimonial" },
+    { name: "Buy", href: "#price" },
     { name: "about", href: "#about" },
     { name: "Register", href: "#register" },
     { name: "Log in", href: "#login" },
@@ -75,7 +75,9 @@ const MiniNavbar = () => {
   return (
     <>
       {/* Menu Button - ONLY VISIBLE ON SMALLER SCREENS (hidden on lg and up) */}
-      <div className="fixed right-10 top-7 flex items-center gap-3 flex-shrink-0 z-[101] lg:hidden"> {/* Added lg:hidden */}
+      <div className="fixed right-10 top-7 flex items-center gap-3 flex-shrink-0 z-[101] lg:hidden">
+        {" "}
+        {/* Added lg:hidden */}
         <button
           className={`h-10 w-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 ${
             isOpen

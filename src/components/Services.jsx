@@ -219,7 +219,7 @@ const Services = () => {
                 <div className="flex items-start mb-3 sm:mb-4 relative z-10">
                   <div className="hover-icon w-1 sm:w-1.5 h-5 sm:h-6 bg-gradient-to-b from-orange-400 to-red-500 rounded-full mr-3 flex-shrink-0 mt-1"></div>
                   <h3 className="hover-text text-base sm:text-lg md:text-xl font-bold text-gray-100 leading-tight flex-1 group-hover:text-orange-300 transition-colors duration-300">
-                    AI-Powered Support
+                    AI-Powered Chatbot Support
                   </h3>
                 </div>
                 <p className="hover-text text-gray-300 text-sm sm:text-base leading-relaxed flex-1 relative z-10 group-hover:text-gray-200 transition-colors duration-300">

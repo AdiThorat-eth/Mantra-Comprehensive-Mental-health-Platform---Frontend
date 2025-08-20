@@ -174,9 +174,11 @@ const Price = () => {
         <div className="text-center mb-8 animate-fade-in-up">
           <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Choose Your Mental Health
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400 special-font">
               {" "}
-              Journey
+              <b>
+                <ss>Journey </ss>
+              </b>
             </span>
           </h1>
           <p className="text-lg text-white/90 max-w-2xl mx-auto mb-6">

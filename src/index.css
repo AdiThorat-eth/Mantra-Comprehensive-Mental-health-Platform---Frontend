@@ -43,6 +43,11 @@ body {
     border-radius: 40px;
   }
 
+  .rrr {
+    border-top-left-radius: 40px;
+    border-top-right-radius: 40px;
+  }
+
   .rrCenter {
     left: calc(50% - 8px);
     transform: translateX(-50%);
@@ -182,5 +187,40 @@ body {
     background-image: "cover";
     background-position: "center";
     background-repeat: "no-repeat";
+  }
+
+  .tt3 {
+    background-image: url("./public/img/ss4.jpg");
+    background-image: "cover";
+    background-position: "center";
+    background-repeat: "no-repeat";
+  }
+
+  .tt4 {
+    background-image: url("./public/img/ss6.png");
+    background-image: "cover";
+    background-position: "center";
+    background-repeat: "no-repeat";
+  }
+
+  .tt5 {
+    background-image: url("./public/img/x.png");
+    background-image: "cover";
+    background-position: "center";
+    background-repeat: "no-repeat";
+  }
+
+  .animate-wave-pulse {
+    animation: wave-pulse 4s ease-in-out infinite;
+  }
+
+  @keyframes wave-pulse {
+    0%,
+    100% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.7;
+    }
   }
 }
