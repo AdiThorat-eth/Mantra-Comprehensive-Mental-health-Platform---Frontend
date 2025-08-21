@@ -1,9 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Check, Star } from "lucide-react";
 import { Card, CardBody } from "./Card";
 
 const Price = () => {
   const [isAnnual, setIsAnnual] = useState(false);
+  const [isVisible, setIsVisible] = useState({
+    title: false,
+    description1: false,
+    description2: false,
+    toggle: false
+  });
+  
+  const titleRef = useRef(null);
+  const desc1Ref = useRef(null);
+  const desc2Ref = useRef(null);
+  const toggleRef = useRef(null);
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const elementId = entry.target.dataset.element;
+          setIsVisible(prev => ({
+            ...prev,
+            [elementId]: true
+          }));
+        }
+      });
+    }, observerOptions);
+
+    if (titleRef.current) observer.observe(titleRef.current);
+    if (desc1Ref.current) observer.observe(desc1Ref.current);
+    if (desc2Ref.current) observer.observe(desc2Ref.current);
+    if (toggleRef.current) observer.observe(toggleRef.current);
+
+    return () => observer.disconnect();
+  }, []);
 
   const pricingTiers = [
     {
@@ -86,8 +123,105 @@ const Price = () => {
           }
         }
 
+        @keyframes typewriter {
+          from {
+            width: 0;
+          }
+          to {
+            width: 100%;
+          }
+        }
+
+        @keyframes blinkCursor {
+          0%, 50% {
+            border-right-color: rgba(59, 130, 246, 1);
+          }
+          51%, 100% {
+            border-right-color: transparent;
+          }
+        }
+
+        @keyframes slideInFromLeft {
+          from {
+            opacity: 0;
+            transform: translateX(-50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes slideInFromRight {
+          from {
+            opacity: 0;
+            transform: translateX(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.8);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
         .animate-fade-in-up {
           animation: fadeInUp 0.8s ease-out forwards;
+        }
+
+        .animate-typewriter {
+          overflow: hidden;
+          white-space: nowrap;
+          border-right: 2px solid rgba(59, 130, 246, 1);
+          animation: typewriter 2s steps(40) forwards,
+                     blinkCursor 1s infinite;
+        }
+
+        .animate-typewriter.visible {
+          animation: typewriter 2s steps(40) forwards,
+                     blinkCursor 1s infinite;
+        }
+
+        .animate-slide-left {
+          opacity: 0;
+          transform: translateX(-50px);
+          transition: all 0.8s ease-out;
+        }
+
+        .animate-slide-left.visible {
+          opacity: 1;
+          transform: translateX(0);
+        }
+
+        .animate-slide-right {
+          opacity: 0;
+          transform: translateX(50px);
+          transition: all 0.8s ease-out;
+        }
+
+        .animate-slide-right.visible {
+          opacity: 1;
+          transform: translateX(0);
+        }
+
+        .animate-scale-in {
+          opacity: 0;
+          transform: scale(0.8);
+          transition: all 0.8s ease-out;
+        }
+
+        .animate-scale-in.visible {
+          opacity: 1;
+          transform: scale(1);
         }
 
         .pricing-card {
@@ -171,8 +305,12 @@ const Price = () => {
 
       <div className="absolute h-screen w-[96vw] rr bc rrCenter flex flex-col justify-center items-center overflow-y-hidden">
         {/* Header Section */}
-        <div className="text-center mb-8 animate-fade-in-up">
-          <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
+        <div className="text-center mb-8">
+          <h1 
+            ref={titleRef}
+            data-element="title"
+            className={`text-3xl md:text-4xl font-bold text-white mb-4 animate-typewriter inline-block ${isVisible.title ? 'visible' : ''}`}
+          >
             Choose Your Mental Health
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400 special-font">
               {" "}
@@ -181,13 +319,27 @@ const Price = () => {
               </b>
             </span>
           </h1>
-          <p className="text-lg text-white/90 max-w-2xl mx-auto mb-6">
-            Professional mental health support tailored to your needs. Start
-            your wellness journey today with our comprehensive platform.
+          <p 
+            ref={desc1Ref}
+            data-element="description1"
+            className={`text-lg text-white/90 max-w-2xl mx-auto mb-3 animate-slide-left ${isVisible.description1 ? 'visible' : ''}`}
+          >
+            Professional mental health support tailored to your needs.
+          </p>
+          <p 
+            ref={desc2Ref}
+            data-element="description2"
+            className={`text-lg text-white/90 max-w-2xl mx-auto mb-6 animate-slide-right ${isVisible.description2 ? 'visible' : ''}`}
+          >
+            Start your wellness journey today with our comprehensive platform.
           </p>
 
           {/* Billing Toggle */}
-          <div className="flex items-center justify-center mb-6">
+          <div 
+            ref={toggleRef}
+            data-element="toggle"
+            className={`flex items-center justify-center mb-6 animate-scale-in ${isVisible.toggle ? 'visible' : ''}`}
+          >
             <span
               className={`text-sm font-medium ${
                 !isAnnual ? "text-white" : "text-white/60"
@@ -221,7 +373,7 @@ const Price = () => {
         {/* Pricing Cards */}
         <div className="grid grid-cols-1 commit md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto px-4">
           <div
-            className="absolute top-[33vh] left-1/2 transform -translate-x-1/2"
+            className="absolute top-[34vh] left-1/2 transform -translate-x-1/2"
             style={{ zIndex: 1000 }}
           >
             <span className="popular-badge inline-flex items-center rounded-full bg-gradient-to-r from-green-500 to-blue-500 px-4 py-2 text-sm font-medium text-white shadow-xl border-2 border-white/20">

@@ -89,7 +89,7 @@ const Footer = memo(() => {
                 href="mailto:mantra.care@xyz.com"
                 className="group/item flex items-center space-x-3 hover:text-black transition-all duration-300 transform hover:translate-x-2"
               >
-                <div className="p-2 bg-gray-300/50 group-hover/item:bg-blue-600 group-hover/item:text-white rounded-lg transition-all duration-300 group-hover/item:rotate-12 group-hover/item:scale-110">
+                <div className="p-2 bg-gray-300/50 group-hover/item:bg-blue-600 group-hover/item:text-white rounded-lg transition-all duration-300">
                   <Mail className="w-4 h-4" />
                 </div>
                 <span className="group-hover/item:translate-x-1 transition-transform duration-300">
@@ -98,14 +98,14 @@ const Footer = memo(() => {
               </a>
 
               <div className="flex items-center space-x-3 hover:translate-x-2 transition-transform duration-300 group/item">
-                <div className="p-2 bg-gray-300/50 group-hover/item:bg-green-600 group-hover/item:text-white rounded-lg transition-all duration-300 group-hover/item:rotate-12 group-hover/item:scale-110">
+                <div className="p-2 bg-gray-300/50 group-hover/item:bg-green-600 group-hover/item:text-white rounded-lg transition-all duration-300">
                   <Phone className="w-4 h-4" />
                 </div>
                 <span>+91 1234567890</span>
               </div>
 
               <div className="flex items-center space-x-3 hover:translate-x-2 transition-transform duration-300 group/item">
-                <div className="p-2 bg-gray-300/50 group-hover/item:bg-red-600 group-hover/item:text-white rounded-lg transition-all duration-300 group-hover/item:rotate-12 group-hover/item:scale-110">
+                <div className="p-2 bg-gray-300/50 group-hover/item:bg-red-600 group-hover/item:text-white rounded-lg transition-all duration-300">
                   <MapPin className="w-4 h-4" />
                 </div>
                 <span>Neu road, Mumbai</span>

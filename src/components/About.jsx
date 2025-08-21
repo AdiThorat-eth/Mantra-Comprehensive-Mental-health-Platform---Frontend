@@ -1,14 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 const About = () => {
   const [scrollY, setScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState(0);
+  const [isTitleVisible, setIsTitleVisible] = useState(false);
+  
+  const titleRef = useRef(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveSection((prev) => (prev + 1) % 4);
     }, 5000);
     return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setIsTitleVisible(true);
+        } else {
+          setIsTitleVisible(false); // Reset when out of view
+        }
+      });
+    }, observerOptions);
+
+    if (titleRef.current) {
+      observer.observe(titleRef.current);
+    }
+
+    return () => observer.disconnect();
   }, []);
 
   const sections = [
@@ -40,6 +66,27 @@ const About = () => {
 
   return (
     <div className="h-screen w-screen flex flex-col justify-center items-center relative">
+      <style jsx>{`
+        .reveal-text {
+          overflow: hidden;
+        }
+
+        .reveal-text .word {
+          display: inline-block;
+          opacity: 1;
+          transform: translateY(100%);
+          transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal-text.visible .word {
+          opacity: 1;
+          transform: translateY(0);
+        }
+
+        .reveal-text.visible .word:nth-child(1) { transition-delay: 0s; }
+        .reveal-text.visible .word:nth-child(2) { transition-delay: 0s; }
+      `}</style>
+      
       <div className="absolute h-[96vh] w-[96vw] rr tt3 rrCenter flex flex-col justify-center items-center overflow-y-hidden">
         {/* Subtle Background Pattern */}
         <div className="absolute inset-0 opacity-5">
@@ -57,8 +104,12 @@ const About = () => {
           {/* Header Section */}
           <div className="flex-shrink-0 text-center pt-12 pb-12">
             <div className="inline-block">
-              <h1 className="text-5xl md:text-6xl font-light text-gray-800 mb-6 tracking-tight">
-                About Mantra
+              <h1 
+                ref={titleRef}
+                className={`text-5xl md:text-6xl font-light text-gray-800 mb-6 tracking-tight reveal-text ${isTitleVisible ? 'visible' : ''}`}
+              >
+                <span className="word">About</span>
+                <span className="word" style={{marginLeft: '0.25em'}}>Mantra</span>
               </h1>
               <div className="w-16 h-0.5 bg-emerald-500 mx-auto mb-6" />
               <p className="text-lg text-gray-600 font-light">
@@ -130,6 +181,7 @@ const About = () => {
           </div>
 
           {/* Bottom Navigation */}
+          
           <div className="flex-shrink-0 pb-12">
             <div className="flex justify-center items-center space-x-3">
               {sections.map((_, index) => (
@@ -146,11 +198,13 @@ const About = () => {
             </div>
 
             {/* Progress indicator */}
-            <div className="mt-6 text-center">
+
+            {/* <div className="mt-6 text-center">
               <span className="text-sm text-gray-500 font-light">
                 {activeSection + 1} of {sections.length}
               </span>
-            </div>
+            </div> */}
+            
           </div>
 
           {/* Side Stats */}
