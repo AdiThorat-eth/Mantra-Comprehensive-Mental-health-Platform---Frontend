@@ -4,63 +4,82 @@ import { TiLocationArrow } from "react-icons/ti";
 import Button from "./Button"; // Assuming this is used elsewhere or will be removed if not needed
 import { CgMenu } from "react-icons/cg"; // Not used in Navbar, can be removed
 
+// Import the modal components from RegisterModel.jsx
+import { LoginModal, RegisterModal } from "./RegisterModel";
+
 const Navbar = () => {
   const navContainerRef = useRef(null);
+  const [modalType, setModalType] = useState(null); // 'login', 'register', or null
 
   const handleProductClick = () => {
     console.log("Product button clicked!");
   };
 
+  // Modal handlers
+  const handleOpenLogin = () => setModalType("login");
+  const handleOpenRegister = () => setModalType("register");
+  const handleCloseModal = () => setModalType(null);
+
   return (
-    <div
-      ref={navContainerRef}
-      className="fixed inset-x-6 top-4 z-[100] h-16 border-none backdrop-blur-md rounded-2xl"
-    >
-      <header className="absolute top-1/2 w-full -translate-y-1/2">
-        <nav className="flex size-full items-center justify-between px-4 py-2 bg-white/10 backdrop-blur-lg rounded-2xl overflow-hidden border border-white/20 shadow-lg shadow-black/10 mix-blend-difference">
-          <div className="flex items-center gap-7 w-full relative">
-            {/* Logos - Fixed positioning */}
-            <div className="flex-shrink-0 flex items-center gap-3">
-              <img
-                className="h-10 w-10 bordr" // Typo: 'bordr' should probably be 'border'
-                src="/img/logo.png"
-                alt="mantra logo logo"
-              />
+    <>
+      <div
+        ref={navContainerRef}
+        className="fixed inset-x-6 top-4 z-[100] h-16 border-none backdrop-blur-md rounded-2xl"
+      >
+        <header className="absolute top-1/2 w-full -translate-y-1/2">
+          <nav className="flex size-full items-center justify-between px-4 py-2 bg-white/10 backdrop-blur-lg rounded-2xl overflow-hidden border border-white/20 shadow-lg shadow-black/10 mix-blend-difference">
+            <div className="flex items-center gap-7 w-full relative">
+              {/* Logos - Fixed positioning */}
+              <div className="flex-shrink-0 flex items-center gap-3">
+                <img
+                  className="h-10 w-10 border" // Fixed typo: 'bordr' to 'border'
+                  src="/img/logo.png"
+                  alt="mantra logo"
+                />
+              </div>
+
+              {/* Left Navigation Buttons - ONLY VISIBLE ON MD AND UP */}
+              <div className="absolute right-20 mr-5 flex-shrink-0 animate-shimmer hidden lg:flex">
+                <LiquidGlassButton
+                  id="Register"
+                  title="Register"
+                  onClick={handleOpenRegister}
+                />
+              </div>
+
+              {/* Spacer to push Play button to the right */}
+              <div className="flex-grow"></div>
+
+              {/* Right Play Button - ONLY VISIBLE ON MD AND UP */}
+              <div className="flex-shrink-0 text-white animate-shimmer hidden lg:flex">
+                <LiquidGlassButton
+                  id="Log-In"
+                  title="LogIn"
+                  variant="primary"
+                  onClick={handleOpenLogin}
+                />
+              </div>
             </div>
+          </nav>
+        </header>
 
-            {/* Left Navigation Buttons - ONLY VISIBLE ON MD AND UP */}
-            {/* Original comment for CgMenu button was here, it's moved to MiniNavbar */}
-            <div className="absolute right-20 mr-5 flex-shrink-0 animate-shimmer hidden lg:flex">
-              {" "}
-              {/* Added hidden md:flex */}
-              <LiquidGlassButton
-                id="Register"
-                title="Register"
-                // onClick={() => {} } // Add your register logic here
-              />
-            </div>
+        {/* Glass Filter SVG */}
+        <GlassFilter />
+      </div>
 
-            {/* Spacer to push Play button to the right */}
-            <div className="flex-grow"></div>
+      {/* Modal Components */}
+      <LoginModal
+        isOpen={modalType === "login"}
+        onClose={handleCloseModal}
+        onSwitchToRegister={handleOpenRegister}
+      />
 
-            {/* Right Play Button - ONLY VISIBLE ON MD AND UP */}
-            <div className="flex-shrink-0 text-white animate-shimmer hidden lg:flex">
-              {" "}
-              {/* Added hidden md:flex */}
-              <LiquidGlassButton
-                id="Log-In"
-                title="LogIn"
-                variant="primary"
-                // onClick={() => {} } // Add your login logic here
-              />
-            </div>
-          </div>
-        </nav>
-      </header>
-
-      {/* Glass Filter SVG */}
-      <GlassFilter />
-    </div>
+      <RegisterModal
+        isOpen={modalType === "register"}
+        onClose={handleCloseModal}
+        onSwitchToLogin={handleOpenLogin}
+      />
+    </>
   );
 };
 
@@ -73,7 +92,6 @@ const LiquidGlassButton = ({
 }) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  // Removed 'md:flex hidden' from here, applied directly to the wrapping div in Navbar component
   const baseClasses =
     "relative inline-flex items-center justify-center gap-2 px-4 py-2 text-sm font-medium transition-all duration-300 cursor-pointer overflow-hidden rounded-full outline-none";
 
