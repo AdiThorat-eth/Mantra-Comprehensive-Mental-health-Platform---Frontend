@@ -303,7 +303,7 @@ const Price = () => {
         }
       `}</style>
 
-      <div className="absolute h-screen w-[96vw] rr bc rrCenter flex flex-col justify-center items-center overflow-y-hidden">
+      <div className="absolute h-screen w-[96vw] rr tt7 rrCenter flex flex-col justify-center items-center overflow-y-hidden">
         {/* Header Section */}
         <div className="text-center mb-8">
           <h1 

@@ -126,16 +126,16 @@ const App = () => {
         <Services />
       </section>
 
-      <section id="testimonial">
-        <Testimonial />
-      </section>
-
       <section id="price">
         <Price />
       </section>
 
       <section id="features">
         <Features />
+      </section>
+
+      <section id="testimonial">
+        <Testimonial />
       </section>
 
       <section id="about">

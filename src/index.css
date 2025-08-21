@@ -217,6 +217,13 @@ body {
     background-repeat: "no-repeat";
   }
 
+  .tt7 {
+    background-image: url("./public/img/z.png");
+    background-image: "cover";
+    background-position: "center";
+    background-repeat: "no-repeat";
+  }
+
   .animate-wave-pulse {
     animation: wave-pulse 4s ease-in-out infinite;
   }
