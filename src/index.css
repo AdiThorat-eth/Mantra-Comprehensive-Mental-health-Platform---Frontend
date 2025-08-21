@@ -210,6 +210,13 @@ body {
     background-repeat: "no-repeat";
   }
 
+  .tt6 {
+    background-image: url("./public/img/blue.jpg");
+    background-image: "cover";
+    background-position: "center";
+    background-repeat: "no-repeat";
+  }
+
   .animate-wave-pulse {
     animation: wave-pulse 4s ease-in-out infinite;
   }

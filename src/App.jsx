@@ -68,6 +68,34 @@ const LoadingScreen = () => {
   );
 };
 
+// Chatbot Icon Component
+// Make sure to replace '/path/to/your/chatbot-logo.png' with the actual path to your logo file.
+// The z-50 ensures the icon stays on top of other content.
+const ChatbotIcon = () => {
+  const [showChat, setShowChat] = useState(false);
+
+  const toggleChat = () => {
+    setShowChat(!showChat);
+  };
+
+  return (
+    <div className="fixed bottom-6 right-6 z-50 cursor-pointer">
+      <img
+        src="/path/to/your/chatbot-logo.png"
+        alt="Chatbot Icon"
+        className="w-14 h-14 rounded-full shadow-lg transition-transform duration-300 hover:scale-110"
+        onClick={toggleChat}
+      />
+      {/* You can add a conditional chat window here */}
+      {/* {showChat && (
+        <div className="absolute bottom-20 right-0 w-80 h-96 bg-white rounded-lg shadow-xl border border-gray-200">
+          <div className="p-4">Chat Window Content</div>
+        </div>
+      )} */}
+    </div>
+  );
+};
+
 const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
@@ -117,6 +145,8 @@ const App = () => {
       <section id="footer">
         <Footer />
       </section>
+
+      <ChatbotIcon />
     </div>
   );
 };

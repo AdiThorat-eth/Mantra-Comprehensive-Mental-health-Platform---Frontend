@@ -92,7 +92,7 @@ const About = () => {
         }
       `}</style>
 
-      <div className="absolute h-screen w-[96vw] rr tt3 rrCenter flex flex-col justify-center items-center overflow-y-hidden">
+      <div className="absolute h-screen w-[96vw] rr tt6 rrCenter flex flex-col justify-center items-center overflow-y-hidden">
         {/* Subtle Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div

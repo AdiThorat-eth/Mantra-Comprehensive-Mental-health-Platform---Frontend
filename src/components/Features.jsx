@@ -13,7 +13,7 @@ const Features = () => {
           id: "pdf-1",
           title: "PDF Resources & Articles",
           description:
-            "Downloadable worksheets, guides, and short articles to support mental health education and self‑help.",
+            "Downloadable worksheets, guides, and short articles to support mental health education and self-help.",
           icon: "📄",
           color: "cyan",
           type: "pdfs",
@@ -107,7 +107,7 @@ const Features = () => {
           id: "med-1",
           title: "Basic Meditation & Breathing",
           description:
-            "Beginner‑friendly meditations and simple breathing exercises to reduce stress and increase focus.",
+            "Beginner-friendly meditations and simple breathing exercises to reduce stress and increase focus.",
           icon: "🧘",
           color: "green",
           type: "meditation",
@@ -120,7 +120,7 @@ const Features = () => {
             },
             {
               id: "m-102",
-              title: "5-Minute Mindful Check‑in",
+              title: "5-Minute Mindful Check-in",
               duration: "5:00",
               kind: "mindfulness",
             },
@@ -132,7 +132,7 @@ const Features = () => {
             },
             {
               id: "m-104",
-              title: "Calm Countdown (5‑4‑3‑2‑1)",
+              title: "Calm Countdown (5-4-3-2-1)",
               duration: "4:10",
               kind: "grounding",
             },
@@ -169,7 +169,7 @@ const Features = () => {
             },
             {
               id: "a-203",
-              title: "Wind‑Down for Sleep",
+              title: "Wind-Down for Sleep",
               duration: "10:40",
               url: "#",
             },
@@ -234,8 +234,6 @@ const Features = () => {
     </div>
   );
 };
-
-/* ---------- UI helpers ---------- */
 
 const palette = {
   purple: { bar: "from-purple-500 to-purple-700", ring: "ring-purple-400/40" },
@@ -402,8 +400,6 @@ const Btn = ({ kind = "primary", onClick, children, className = "", ring }) => {
   );
 };
 
-/* ---------- Modal renderer (per section type) ---------- */
-
 const SectionModal = ({ section, onClose }) => {
   const wrap = (children) => (
     <div
@@ -437,7 +433,7 @@ const SectionModal = ({ section, onClose }) => {
         {/* Layer 3: The Diagonal Lines Pattern and Gradient */}
         <div
           className={cn(
-            "absolute inset-0 z-5 w-full h-full bg-repeat",
+            "absolute inset-0 z-[1] w-full h-full bg-repeat",
             "bg-[length:30px_30px]",
             "bg-lines-pattern-light dark:bg-lines-pattern"
           )}
@@ -452,22 +448,22 @@ const SectionModal = ({ section, onClose }) => {
         </div>
 
         {/* Layer 4: Text Background for Readability */}
-        <div className="absolute inset-0 z-10 bg-black/5 rounded-md backdrop-blur-[0px]" />
+        <div className="absolute inset-0 z-[2] bg-black/20 rounded-md backdrop-blur-[0px]" />
 
         {/* Layer 5: Actual Modal Content */}
-        <div className="relative z-20 h-full flex flex-col">
+        <div className="relative z-50 h-full flex flex-col">
           <div className="flex justify-between items-center p-6 border-b border-white/20 flex-shrink-0">
-            <h2 className="text-2xl font-semibold text-white">
+            <h2 className="text-2xl font-semibold text-white relative z-50">
               {section.title}
             </h2>
             <button
-              className="text-white hover:bg-white/20 p-2 rounded-lg transition-colors"
+              className="text-white hover:bg-white/20 p-2 rounded-lg transition-colors relative z-50"
               onClick={onClose}
             >
               <span className="text-2xl">×</span>
             </button>
           </div>
-          <div className="p-6 flex-1 overflow-y-auto">{children}</div>
+          <div className="p-6 flex-1 overflow-y-auto relative z-50">{children}</div>
         </div>
 
         {/* SVG Filter Definition */}
@@ -516,18 +512,19 @@ const SectionModal = ({ section, onClose }) => {
 
   if (section.type === "pdfs") {
     return wrap(
-      <div className="space-y-3">
+      <div className="space-y-3 relative z-[100]">
         {section.items.map((f) => (
           <div
             key={f.id}
-            className="flex items-center gap-4 bg-white/5 rounded-lg p-4 hover:bg-white/10 transition"
+            className="flex items-center gap-4 bg-white/20 rounded-lg p-4 hover:bg-white/25 transition relative z-[100] text-white border border-white/10"
+            style={{ position: 'relative', zIndex: 100 }}
           >
-            <span className="text-2xl">📄</span>
-            <span className="flex-grow text-gray-200">{f.title}</span>
-            <span className="text-gray-500 text-xs">
+            <span className="text-2xl relative z-[100]">📄</span>
+            <span className="flex-grow text-white font-medium relative z-[100]">{f.title}</span>
+            <span className="text-gray-200 text-sm relative z-[100]">
               {f.format} • {f.pages}p
             </span>
-            <button className="bg-indigo-400 text-white px-4 py-2 rounded-md hover:bg-indigo-500 transition">
+            <button className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition relative z-[100]">
               Download
             </button>
           </div>
@@ -538,15 +535,16 @@ const SectionModal = ({ section, onClose }) => {
 
   if (section.type === "videos") {
     return wrap(
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 relative z-[100]">
         {section.items.map((v) => (
           <div
             key={v.id}
-            className="bg-white/5 rounded-lg p-4 text-center hover:bg-white/10 transition cursor-pointer"
+            className="bg-white/20 rounded-lg p-4 text-center hover:bg-white/25 transition cursor-pointer relative z-[100] border border-white/10"
+            style={{ position: 'relative', zIndex: 100 }}
           >
-            <div className="text-4xl mb-2">▶️</div>
-            <div className="text-gray-200 font-medium">{v.title}</div>
-            <div className="text-gray-400 text-sm mt-1">
+            <div className="text-4xl mb-2 relative z-[100]">▶️</div>
+            <div className="text-white font-medium relative z-[100]">{v.title}</div>
+            <div className="text-gray-200 text-sm mt-1 relative z-[100]">
               {v.duration} • {v.level}
             </div>
           </div>
@@ -557,19 +555,20 @@ const SectionModal = ({ section, onClose }) => {
 
   if (section.type === "meditation") {
     return wrap(
-      <div className="space-y-3">
+      <div className="space-y-3 relative z-[100]">
         {section.items.map((m) => (
           <div
             key={m.id}
-            className="flex items-center gap-4 bg-white/5 rounded-lg p-4 hover:bg-white/10 transition"
+            className="flex items-center gap-4 bg-white/20 rounded-lg p-4 hover:bg-white/25 transition relative z-[100] border border-white/10"
+            style={{ position: 'relative', zIndex: 100 }}
           >
-            <span className="text-2xl">🧘</span>
-            <div className="flex-grow">
+            <span className="text-2xl relative z-[100]">🧘</span>
+            <div className="flex-grow relative z-[100]">
               <div className="text-white font-medium">{m.title}</div>
-              <div className="text-gray-400 text-sm capitalize">{m.kind}</div>
+              <div className="text-gray-200 text-sm capitalize">{m.kind}</div>
             </div>
-            <span className="text-gray-400 text-sm">{m.duration}</span>
-            <button className="bg-emerald-500 text-white px-4 py-2 rounded-md hover:bg-emerald-600 transition">
+            <span className="text-gray-200 text-sm relative z-[100]">{m.duration}</span>
+            <button className="bg-emerald-500 text-white px-4 py-2 rounded-md hover:bg-emerald-600 transition relative z-[100]">
               Start
             </button>
           </div>
@@ -580,16 +579,17 @@ const SectionModal = ({ section, onClose }) => {
 
   if (section.type === "audio") {
     return wrap(
-      <div className="space-y-3">
+      <div className="space-y-3 relative z-[100]">
         {section.items.map((a) => (
           <div
             key={a.id}
-            className="flex items-center gap-4 bg-white/5 rounded-lg p-4 hover:bg-white/10 transition"
+            className="flex items-center gap-4 bg-white/20 rounded-lg p-4 hover:bg-white/25 transition relative z-[100] border border-white/10"
+            style={{ position: 'relative', zIndex: 100 }}
           >
-            <span className="text-2xl">🎵</span>
-            <span className="flex-grow text-gray-200">{a.title}</span>
-            <span className="text-gray-400 text-sm">{a.duration}</span>
-            <button className="bg-indigo-400 text-white px-4 py-2 rounded-md hover:bg-indigo-500 transition">
+            <span className="text-2xl relative z-[100]">🎵</span>
+            <span className="flex-grow text-white font-medium relative z-[100]">{a.title}</span>
+            <span className="text-gray-200 text-sm relative z-[100]">{a.duration}</span>
+            <button className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition relative z-[100]">
               Play
             </button>
           </div>
