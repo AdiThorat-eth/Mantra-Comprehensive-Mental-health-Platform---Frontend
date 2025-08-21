@@ -3,6 +3,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import React, { useRef, useState } from "react";
 import { CgMenu } from "react-icons/cg";
+import { LoginModal, RegisterModal } from "./RegisterModel";
 
 const MiniNavbar = () => {
   const navRef = useRef(null);
@@ -10,15 +11,63 @@ const MiniNavbar = () => {
   const contactRef = useRef(null);
   const timeline = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [modalType, setModalType] = useState(null); // 'login', 'register', or null
+
+  const handleOpenLogin = () => {
+    setModalType("login");
+    closeMenu();
+  };
+  const handleOpenRegister = () => {
+    setModalType("register");
+    closeMenu();
+  };
+  const handleCloseModal = () => setModalType(null);
 
   const navigationItems = [
-    { name: "home", href: "#home" },
-    { name: "services", href: "#services" },
-    { name: "Testimonial", href: "#testimonial" },
-    { name: "Buy", href: "#price" },
-    { name: "about", href: "#about" },
-    { name: "Register", href: "#register" },
-    { name: "Log in", href: "#login" },
+    {
+      name: "home",
+      action: () => {
+        window.location.href = "#home";
+        closeMenu();
+      },
+    },
+    {
+      name: "services",
+      action: () => {
+        window.location.href = "#services";
+        closeMenu();
+      },
+    },
+    {
+      name: "Buy",
+      action: () => {
+        window.location.href = "#price";
+        closeMenu();
+      },
+    },
+    {
+      name: "Features",
+      action: () => {
+        window.location.href = "#features";
+        closeMenu();
+      },
+    },
+    {
+      name: "Testimonial",
+      action: () => {
+        window.location.href = "#testimonial";
+        closeMenu();
+      },
+    },
+    {
+      name: "about",
+      action: () => {
+        window.location.href = "#about";
+        closeMenu();
+      },
+    },
+    { name: "Register", action: handleOpenRegister },
+    { name: "Log in", action: handleOpenLogin },
   ];
 
   useGSAP(() => {
@@ -105,8 +154,7 @@ const MiniNavbar = () => {
             <div key={index} ref={(ele) => (linksRef.current[index] = ele)}>
               <a
                 className="transition-all duration-300 cursor-pointer hover:text-white block"
-                href={item.href}
-                onClick={closeMenu}
+                onClick={item.action}
               >
                 {item.name}
               </a>
@@ -125,6 +173,18 @@ const MiniNavbar = () => {
           </div>
         </div>
       </nav>
+
+      {/* Render Modals */}
+      <LoginModal
+        isOpen={modalType === "login"}
+        onClose={handleCloseModal}
+        onSwitchToRegister={handleOpenRegister}
+      />
+      <RegisterModal
+        isOpen={modalType === "register"}
+        onClose={handleCloseModal}
+        onSwitchToLogin={handleOpenLogin}
+      />
     </>
   );
 };

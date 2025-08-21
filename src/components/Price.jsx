@@ -8,9 +8,9 @@ const Price = () => {
     title: false,
     description1: false,
     description2: false,
-    toggle: false
+    toggle: false,
   });
-  
+
   const titleRef = useRef(null);
   const desc1Ref = useRef(null);
   const desc2Ref = useRef(null);
@@ -19,16 +19,16 @@ const Price = () => {
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+      rootMargin: "0px 0px -50px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           const elementId = entry.target.dataset.element;
-          setIsVisible(prev => ({
+          setIsVisible((prev) => ({
             ...prev,
-            [elementId]: true
+            [elementId]: true,
           }));
         }
       });
@@ -133,10 +133,12 @@ const Price = () => {
         }
 
         @keyframes blinkCursor {
-          0%, 50% {
+          0%,
+          50% {
             border-right-color: rgba(59, 130, 246, 1);
           }
-          51%, 100% {
+          51%,
+          100% {
             border-right-color: transparent;
           }
         }
@@ -182,13 +184,11 @@ const Price = () => {
           overflow: hidden;
           white-space: nowrap;
           border-right: 2px solid rgba(59, 130, 246, 1);
-          animation: typewriter 2s steps(40) forwards,
-                     blinkCursor 1s infinite;
+          animation: typewriter 2s steps(40) forwards, blinkCursor 1s infinite;
         }
 
         .animate-typewriter.visible {
-          animation: typewriter 2s steps(40) forwards,
-                     blinkCursor 1s infinite;
+          animation: typewriter 2s steps(40) forwards, blinkCursor 1s infinite;
         }
 
         .animate-slide-left {
@@ -302,142 +302,151 @@ const Price = () => {
           animation: float 4s ease-in-out infinite;
         }
       `}</style>
-
-      <div className="absolute h-screen w-[96vw] rr tt7 rrCenter flex flex-col justify-center items-center overflow-y-hidden">
-        {/* Header Section */}
-        <div className="text-center mb-8">
-          <h1 
-            ref={titleRef}
-            data-element="title"
-            className={`text-3xl md:text-4xl font-bold text-white mb-4 animate-typewriter inline-block ${isVisible.title ? 'visible' : ''}`}
-          >
-            Choose Your Mental Health
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400 special-font">
-              {" "}
-              <b>
-                <ss>Journey </ss>
-              </b>
-            </span>
-          </h1>
-          <p 
-            ref={desc1Ref}
-            data-element="description1"
-            className={`text-lg text-white/90 max-w-2xl mx-auto mb-3 animate-slide-left ${isVisible.description1 ? 'visible' : ''}`}
-          >
-            Professional mental health support tailored to your needs.
-          </p>
-          <p 
-            ref={desc2Ref}
-            data-element="description2"
-            className={`text-lg text-white/90 max-w-2xl mx-auto mb-6 animate-slide-right ${isVisible.description2 ? 'visible' : ''}`}
-          >
-            Start your wellness journey today with our comprehensive platform.
-          </p>
-
-          {/* Billing Toggle */}
-          <div 
-            ref={toggleRef}
-            data-element="toggle"
-            className={`flex items-center justify-center mb-6 animate-scale-in ${isVisible.toggle ? 'visible' : ''}`}
-          >
-            <span
-              className={`text-sm font-medium ${
-                !isAnnual ? "text-white" : "text-white/60"
+      <div className="h-[100vh] w-screen flex flex-col justify-center items-center relative">
+        <div className="absolute h-[96vh] w-[96vw] rr tt7 rrCenter flex flex-col justify-center items-center overflow-y-hidden">
+          {/* Header Section */}
+          <div className="text-center mb-8">
+            <h1
+              ref={titleRef}
+              data-element="title"
+              className={`text-3xl md:text-4xl font-bold text-white mb-4 animate-typewriter inline-block ${
+                isVisible.title ? "visible" : ""
               }`}
             >
-              Monthly
-            </span>
-            <button
-              onClick={() => setIsAnnual(!isAnnual)}
-              className="mx-4 relative inline-flex h-6 w-11 items-center rounded-full bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              Choose Your Mental Health
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400 special-font">
+                {" "}
+                <b>
+                  <ss>Journey </ss>
+                </b>
+              </span>
+            </h1>
+            <p
+              ref={desc1Ref}
+              data-element="description1"
+              className={`text-lg text-white/90 max-w-2xl mx-auto mb-3 animate-slide-left ${
+                isVisible.description1 ? "visible" : ""
+              }`}
+            >
+              Professional mental health support tailored to your needs.
+            </p>
+            <p
+              ref={desc2Ref}
+              data-element="description2"
+              className={`text-lg text-white/90 max-w-2xl mx-auto mb-6 animate-slide-right ${
+                isVisible.description2 ? "visible" : ""
+              }`}
+            >
+              Start your wellness journey today with our comprehensive platform.
+            </p>
+
+            {/* Billing Toggle */}
+            <div
+              ref={toggleRef}
+              data-element="toggle"
+              className={`flex items-center justify-center mb-6 animate-scale-in ${
+                isVisible.toggle ? "visible" : ""
+              }`}
             >
               <span
-                className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                  isAnnual ? "translate-x-6 bg-blue-600" : "translate-x-1"
+                className={`text-sm font-medium ${
+                  !isAnnual ? "text-white" : "text-white/60"
                 }`}
-              />
-            </button>
-            <span
-              className={`text-sm font-medium ${
-                isAnnual ? "text-white" : "text-white/60"
-              }`}
-            >
-              Annual
-              <span className="ml-1 inline-flex items-center rounded-full bg-green-500 px-2 py-1 text-xs font-medium text-white">
-                Save 30%
+              >
+                Monthly
               </span>
-            </span>
+              <button
+                onClick={() => setIsAnnual(!isAnnual)}
+                className="mx-4 relative inline-flex h-6 w-11 items-center rounded-full bg-white/20 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+              >
+                <span
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                    isAnnual ? "translate-x-6 bg-blue-600" : "translate-x-1"
+                  }`}
+                />
+              </button>
+              <span
+                className={`text-sm font-medium ${
+                  isAnnual ? "text-white" : "text-white/60"
+                }`}
+              >
+                Annual
+                <span className="ml-1 inline-flex items-center rounded-full bg-green-500 px-2 py-1 text-xs font-medium text-white">
+                  Save 30%
+                </span>
+              </span>
+            </div>
           </div>
-        </div>
 
-        {/* Pricing Cards */}
-        <div className="grid grid-cols-1 commit md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto px-4">
-          <div
-            className="absolute top-[34vh] left-1/2 transform -translate-x-1/2"
-            style={{ zIndex: 1000 }}
-          >
-            <span className="popular-badge inline-flex items-center rounded-full bg-gradient-to-r from-green-500 to-blue-500 px-4 py-2 text-sm font-medium text-white shadow-xl border-2 border-white/20">
-              <Star className="w-4 h-4 mr-1 fill-white" />
-              Most Popular
-            </span>
-          </div>
-          {pricingTiers.map((tier, index) => (
-            <Card
-              key={tier.name}
-              className={`pricing-card ${
-                tier.name === "Basic Care"
-                  ? "pricing-card-basic"
-                  : tier.name === "Professional Care"
-                  ? "pricing-card-professional"
-                  : "pricing-card-enterprise"
-              } w-full h-auto ${
-                tier.popular ? "transform scale-105" : "hover:scale-105"
-              } relative`}
+          {/* Pricing Cards */}
+          <div className="grid grid-cols-1 commit md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto px-4">
+            <div
+              className="absolute top-[34vh] left-1/2 transform -translate-x-1/2"
+              style={{ zIndex: 1000 }}
             >
-              <CardBody className="hover-gradient p-6 h-[55dvh] flex flex-col relative overflow-visible">
-                <div className="text-center mb-6 relative z-20">
-                  <h3 className="text-xl font-bold text-white mb-2">
-                    {tier.name}
-                  </h3>
-                  <p className="text-sm text-white/80 mb-3">
-                    {tier.description}
-                  </p>
-                  <div className="flex items-baseline justify-center">
-                    <span className="text-3xl font-bold text-white">
-                      {tier.price}
-                    </span>
-                    <span className="text-lg text-white/70 ml-1">
-                      {tier.period}
-                    </span>
-                  </div>
-                  {/* {isAnnual && tier.period && (
+              <span className="popular-badge inline-flex items-center rounded-full bg-gradient-to-r from-green-500 to-blue-500 px-4 py-2 text-sm font-medium text-white shadow-xl border-2 border-white/20">
+                <Star className="w-4 h-4 mr-1 fill-white" />
+                Most Popular
+              </span>
+            </div>
+            {pricingTiers.map((tier, index) => (
+              <Card
+                key={tier.name}
+                className={`pricing-card ${
+                  tier.name === "Basic Care"
+                    ? "pricing-card-basic"
+                    : tier.name === "Professional Care"
+                    ? "pricing-card-professional"
+                    : "pricing-card-enterprise"
+                } w-full h-auto ${
+                  tier.popular ? "transform scale-105" : "hover:scale-105"
+                } relative`}
+              >
+                <CardBody className="hover-gradient p-6 h-[55dvh] flex flex-col relative overflow-visible">
+                  <div className="text-center mb-6 relative z-20">
+                    <h3 className="text-xl font-bold text-white mb-2">
+                      {tier.name}
+                    </h3>
+                    <p className="text-sm text-white/80 mb-3">
+                      {tier.description}
+                    </p>
+                    <div className="flex items-baseline justify-center">
+                      <span className="text-3xl font-bold text-white">
+                        {tier.price}
+                      </span>
+                      <span className="text-lg text-white/70 ml-1">
+                        {tier.period}
+                      </span>
+                    </div>
+                    {/* {isAnnual && tier.period && (
                     <p className="text-xs text-green-400 mt-1">
                       2 months free included
                     </p>
                   )} */}
-                </div>
+                  </div>
 
-                <ul className="space-y-3 mb-6 flex-1 relative z-20">
-                  {tier.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <Check className="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
-                      <span className="text-sm text-white/90">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
+                  <ul className="space-y-3 mb-6 flex-1 relative z-20">
+                    {tier.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <Check className="w-5 h-5 text-green-400 mr-3 mt-0.5 flex-shrink-0" />
+                        <span className="text-sm text-white/90">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
 
-                <button
-                  className={`relative z-20 w-full py-3 px-6 rounded-xl font-semibold text-base transition-all duration-200 ${
-                    tier.popular
-                      ? "bg-gradient-to-r from-green-500 to-blue-500 text-white hover:from-green-600 hover:to-blue-600 shadow-lg hover:shadow-xl"
-                      : "bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm border border-white/30"
-                  }`}
-                >
-                  {tier.cta}
-                </button>
-              </CardBody>
-            </Card>
-          ))}
+                  <button
+                    className={`relative z-20 w-full py-3 px-6 rounded-xl font-semibold text-base transition-all duration-200 ${
+                      tier.popular
+                        ? "bg-gradient-to-r from-green-500 to-blue-500 text-white hover:from-green-600 hover:to-blue-600 shadow-lg hover:shadow-xl"
+                        : "bg-white/20 text-white hover:bg-white/30 backdrop-blur-sm border border-white/30"
+                    }`}
+                  >
+                    {tier.cta}
+                  </button>
+                </CardBody>
+              </Card>
+            ))}
+          </div>
         </div>
       </div>
     </div>

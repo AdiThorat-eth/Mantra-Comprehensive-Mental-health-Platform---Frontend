@@ -145,8 +145,6 @@ const App = () => {
       <section id="footer">
         <Footer />
       </section>
-
-      <ChatbotIcon />
     </div>
   );
 };
