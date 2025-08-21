@@ -32,7 +32,7 @@ const Navbar = () => {
               {/* Logos - Fixed positioning */}
               <div className="flex-shrink-0 flex items-center gap-3">
                 <img
-                  className="h-10 w-10 border" // Fixed typo: 'bordr' to 'border'
+                  className="h-10 w-10 border rounded-full" // Fixed typo: 'bordr' to 'border'
                   src="/img/logo.png"
                   alt="mantra logo"
                 />

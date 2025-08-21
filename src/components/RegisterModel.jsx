@@ -26,6 +26,20 @@ export const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
     onClose(); // Close the modal after submission for demo purposes
   };
 
+  // Enhanced close handler
+  const handleClose = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onClose();
+  };
+
+  // Handle backdrop click
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -34,6 +48,7 @@ export const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-[200] flex items-center justify-center p-4"
+          onClick={handleBackdropClick}
         >
           {/* Backdrop */}
           <motion.div
@@ -41,7 +56,6 @@ export const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-            onClick={onClose}
           />
 
           {/* Modal Content */}
@@ -50,14 +64,17 @@ export const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-md"
+            className="relative w-full max-w-md z-10"
+            onClick={(e) => e.stopPropagation()}
           >
             <Card className="w-full bg-black/20 backdrop-blur-lg border border-white/20 rounded-3xl shadow-2xl">
-              <CardBody className="p-8">
-                {/* Close Button */}
+              <CardBody className="p-8 relative">
+                {/* Close Button - Fixed positioning and z-index */}
                 <button
-                  onClick={onClose}
-                  className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-200"
+                  type="button"
+                  onClick={handleClose}
+                  className="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white/30"
+                  aria-label="Close modal"
                 >
                   <X className="w-5 h-5 text-white" />
                 </button>
@@ -141,6 +158,7 @@ export const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
                   <p className="text-white/90 text-sm drop-shadow-md">
                     Don't have an account?{" "}
                     <button
+                      type="button"
                       onClick={onSwitchToRegister}
                       className="text-purple-300 hover:text-purple-200 font-semibold transition-colors duration-200 drop-shadow-md"
                     >
@@ -196,6 +214,20 @@ export const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
     onClose(); // Close the modal after submission for demo purposes
   };
 
+  // Enhanced close handler
+  const handleClose = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onClose();
+  };
+
+  // Handle backdrop click
+  const handleBackdropClick = (e) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -204,6 +236,7 @@ export const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className="fixed inset-0 z-[200] flex items-center justify-center p-4"
+          onClick={handleBackdropClick}
         >
           {/* Backdrop */}
           <motion.div
@@ -211,7 +244,6 @@ export const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-            onClick={onClose}
           />
 
           {/* Modal Content */}
@@ -220,14 +252,17 @@ export const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative w-full max-w-md"
+            className="relative w-full max-w-md z-10"
+            onClick={(e) => e.stopPropagation()}
           >
             <Card className="w-full bg-black/20 backdrop-blur-lg border border-white/20 rounded-3xl shadow-2xl">
-              <CardBody className="p-8">
-                {/* Close Button */}
+              <CardBody className="p-8 relative">
+                {/* Close Button - Fixed positioning and z-index */}
                 <button
-                  onClick={onClose}
-                  className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-200"
+                  type="button"
+                  onClick={handleClose}
+                  className="absolute top-4 right-4 z-20 p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-white/30"
+                  aria-label="Close modal"
                 >
                   <X className="w-5 h-5 text-white" />
                 </button>
@@ -385,6 +420,7 @@ export const RegisterModal = ({ isOpen, onClose, onSwitchToLogin }) => {
                   <p className="text-white/90 text-sm drop-shadow-md">
                     Already have an account?{" "}
                     <button
+                      type="button"
                       onClick={onSwitchToLogin}
                       className="text-purple-300 hover:text-purple-200 font-semibold transition-colors duration-200 drop-shadow-md"
                     >
