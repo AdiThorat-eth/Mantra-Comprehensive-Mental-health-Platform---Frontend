@@ -22,10 +22,11 @@ const Footer = memo(() => {
 
   const quickLinks = [
     { name: "Home", href: "#home" },
-    { name: "About Us", href: "#about" },
     { name: "Services", href: "#services" },
-    { name: "Testimonials", href: "#testimonial" },
     { name: "Pricing", href: "#price" },
+    { name: "Features", href: "#features" },
+    { name: "Testimonials", href: "#testimonial" },
+    { name: "About Us", href: "#about" },
   ];
 
   const ourServices = [
@@ -192,7 +193,13 @@ const Footer = memo(() => {
             preserveAspectRatio="none"
           >
             <defs>
-              <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+              <linearGradient
+                id="waveGradient"
+                x1="0%"
+                y1="0%"
+                x2="100%"
+                y2="0%"
+              >
                 <stop offset="0%" stopColor="rgb(75, 85, 99)" stopOpacity="0.3">
                   <animate
                     attributeName="stop-color"

@@ -121,8 +121,8 @@ const About = () => {
                   isTitleVisible ? "visible" : ""
                 }`}
               >
-                <span className="word">About</span>
-                <span className="word" style={{ marginLeft: "0.25em" }}>
+                <span className="word font-bold">About</span>
+                <span className="word font-bold" style={{ marginLeft: "0.25em" }}>
                   Mantra
                 </span>
               </h1>
