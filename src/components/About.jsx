@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
+import { SparklesCore } from "./SparklesCore";
 
 const About = () => {
   const [scrollY, setScrollY] = useState(0);
   const [activeSection, setActiveSection] = useState(0);
   const [isTitleVisible, setIsTitleVisible] = useState(false);
-  
+
   const titleRef = useRef(null);
 
   useEffect(() => {
@@ -17,7 +18,7 @@ const About = () => {
   useEffect(() => {
     const observerOptions = {
       threshold: 0.3,
-      rootMargin: '0px 0px -100px 0px'
+      rootMargin: "0px 0px -100px 0px",
     };
 
     const observer = new IntersectionObserver((entries) => {
@@ -25,7 +26,7 @@ const About = () => {
         if (entry.isIntersecting) {
           setIsTitleVisible(true);
         } else {
-          setIsTitleVisible(false); // Reset when out of view
+          setIsTitleVisible(false);
         }
       });
     }, observerOptions);
@@ -83,11 +84,15 @@ const About = () => {
           transform: translateY(0);
         }
 
-        .reveal-text.visible .word:nth-child(1) { transition-delay: 0s; }
-        .reveal-text.visible .word:nth-child(2) { transition-delay: 0s; }
+        .reveal-text.visible .word:nth-child(1) {
+          transition-delay: 0s;
+        }
+        .reveal-text.visible .word:nth-child(2) {
+          transition-delay: 0s;
+        }
       `}</style>
-      
-      <div className="absolute h-[96vh] w-[96vw] rr tt3 rrCenter flex flex-col justify-center items-center overflow-y-hidden">
+
+      <div className="absolute h-screen w-[96vw] rr tt3 rrCenter flex flex-col justify-center items-center overflow-y-hidden">
         {/* Subtle Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div
@@ -104,13 +109,41 @@ const About = () => {
           {/* Header Section */}
           <div className="flex-shrink-0 text-center pt-12 pb-12">
             <div className="inline-block">
-              <h1 
+              <h1
                 ref={titleRef}
-                className={`text-5xl md:text-6xl font-light text-gray-800 mb-6 tracking-tight reveal-text ${isTitleVisible ? 'visible' : ''}`}
+                className={`text-5xl md:text-6xl font-light text-gray-800 mb-6 tracking-tight reveal-text ${
+                  isTitleVisible ? "visible" : ""
+                }`}
               >
                 <span className="word">About</span>
-                <span className="word" style={{marginLeft: '0.25em'}}>Mantra</span>
+                <span className="word" style={{ marginLeft: "0.25em" }}>
+                  Mantra
+                </span>
               </h1>
+              
+              {/* Enhanced Sparkles Effect Container */}
+              <div className="w-full h-32 relative mb-6">
+                {/* Multiple Gradient Lines for more depth */}
+                <div className="absolute inset-x-20 top-12 bg-gradient-to-r from-transparent via-emerald-500 to-transparent h-[2px] w-3/4 blur-sm mx-auto left-0 right-0" />
+                <div className="absolute inset-x-20 top-12 bg-gradient-to-r from-transparent via-emerald-500 to-transparent h-px w-3/4 mx-auto left-0 right-0" />
+                <div className="absolute inset-x-32 top-12 bg-gradient-to-r from-transparent via-emerald-400 to-transparent h-[3px] w-1/2 blur-sm mx-auto left-0 right-0" />
+                <div className="absolute inset-x-40 top-12 bg-gradient-to-r from-transparent via-emerald-300 to-transparent h-[4px] w-1/3 blur-sm mx-auto left-0 right-0" />
+                
+                {/* Enhanced Sparkles Core with better density */}
+                <SparklesCore
+                  background="transparent"
+                  minSize={0.4}
+                  maxSize={1.2}
+                  particleDensity={1200}
+                  className="w-full h-full"
+                  particleColor="#10b981"
+                  speed={0.8}
+                />
+                
+                {/* Improved Radial Gradient Mask for better blending */}
+                <div className="absolute inset-0 w-full h-full bg-transparent [mask-image:radial-gradient(500px_80px_at_center,transparent_20%,black_60%,transparent_100%)]"></div>
+              </div>
+
               <div className="w-16 h-0.5 bg-emerald-500 mx-auto mb-6" />
               <p className="text-lg text-gray-600 font-light">
                 Transforming mental health through compassionate technology
@@ -181,7 +214,6 @@ const About = () => {
           </div>
 
           {/* Bottom Navigation */}
-          
           <div className="flex-shrink-0 pb-12">
             <div className="flex justify-center items-center space-x-3">
               {sections.map((_, index) => (
@@ -196,15 +228,6 @@ const About = () => {
                 />
               ))}
             </div>
-
-            {/* Progress indicator */}
-
-            {/* <div className="mt-6 text-center">
-              <span className="text-sm text-gray-500 font-light">
-                {activeSection + 1} of {sections.length}
-              </span>
-            </div> */}
-            
           </div>
 
           {/* Side Stats */}
@@ -248,5 +271,7 @@ const About = () => {
     </div>
   );
 };
+
+
 
 export default About;

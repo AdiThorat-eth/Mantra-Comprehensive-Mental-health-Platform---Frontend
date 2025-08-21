@@ -6,6 +6,7 @@ import MiniNavbar from "./components/MiniNavbar";
 import Services from "./components/Services";
 import Testimonial from "./components/Testimonial";
 import Price from "./components/Price";
+import Features from "./components/Features";
 import Footer from "./components/Footer";
 
 // Loader Component
@@ -103,6 +104,10 @@ const App = () => {
 
       <section id="price">
         <Price />
+      </section>
+
+      <section id="features">
+        <Features />
       </section>
 
       <section id="about">
