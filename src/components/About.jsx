@@ -232,20 +232,20 @@ const About = () => {
           <div className="absolute left-8 top-1/2 transform -translate-y-1/2 hidden lg:block">
             <div className="space-y-12 text-left">
               <div>
-                <div className="text-2xl font-light text-emerald-600 mb-1">5</div>
-                <div className="text-xs text-gray-600 uppercase tracking-wide">
+                <div className="text-3xl font-light text-emerald-600 mb-1">5</div>
+                <div className="text-s text-gray-600 uppercase tracking-wide">
                   Team Members
                 </div>
               </div>
               <div>
-                <div className="text-2xl font-light text-emerald-600 mb-1">2024</div>
-                <div className="text-xs text-gray-600 uppercase tracking-wide">
+                <div className="text-3xl font-light text-emerald-600 mb-1">2024</div>
+                <div className="text-s text-gray-600 uppercase tracking-wide">
                   Founded
                 </div>
               </div>
               <div>
-                <div className="text-2xl font-light text-emerald-600 mb-1">∞</div>
-                <div className="text-xs text-gray-600 uppercase tracking-wide">
+                <div className="text-3xl font-light text-emerald-600 mb-1">∞</div>
+                <div className="text-s text-gray-600 uppercase tracking-wide">
                   Impact
                 </div>
               </div>
