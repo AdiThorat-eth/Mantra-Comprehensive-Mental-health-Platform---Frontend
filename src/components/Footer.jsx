@@ -26,20 +26,21 @@ const Footer = memo(() => {
     { name: "Pricing", href: "#price" },
     { name: "Features", href: "#features" },
     { name: "Testimonials", href: "#testimonial" },
+    { name: "FAQ", href: "#faq" },
     { name: "About Us", href: "#about" },
   ];
 
   const ourServices = [
     "Primary Care",
-    "Specialty Care",
-    "Emergency Services",
-    "Telemedicine",
-    "Wellness Programs",
+    "Readable Reasources",
+    "Visual Reasources",
+    "Audio Reasources",
+    "24/7 AI Support",
   ];
 
   return (
     <div className="relative w-screen h-[60vh] overflow-x-hidden flex flex-col justify-end">
-      <footer className="relative tt5 bg-red-200 overflow-hidden rrr rrCenter w-[96vw] h-[58vh] text-gray-900 flex bottom-0">
+      <footer className="relative tt5 bg-red-200 overflow-hidden rrr rrCenter w-[96vw] text-gray-900 flex bottom-0">
         {/* Enhanced animated background elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-blue-500/20 to-purple-500/10 rounded-full blur-3xl animate-pulse"></div>

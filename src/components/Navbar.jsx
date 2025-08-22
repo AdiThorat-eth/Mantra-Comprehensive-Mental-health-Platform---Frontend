@@ -1,8 +1,8 @@
 // Navbar.jsx
 import React, { useRef, useState, useEffect } from "react";
 import { TiLocationArrow } from "react-icons/ti";
-import Button from "./Button"; // Assuming this is used elsewhere or will be removed if not needed
-import { CgMenu } from "react-icons/cg"; // Not used in Navbar, can be removed
+import Button from "./Button";
+import { CgMenu } from "react-icons/cg";
 
 // Import the modal components from RegisterModel.jsx
 import { LoginModal, RegisterModal } from "./RegisterModel";
@@ -10,6 +10,8 @@ import { LoginModal, RegisterModal } from "./RegisterModel";
 const Navbar = () => {
   const navContainerRef = useRef(null);
   const [modalType, setModalType] = useState(null); // 'login', 'register', or null
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const handleProductClick = () => {
     console.log("Product button clicked!");
@@ -20,11 +22,33 @@ const Navbar = () => {
   const handleOpenRegister = () => setModalType("register");
   const handleCloseModal = () => setModalType(null);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if the current scroll position is less than the previous one
+      if (window.scrollY < lastScrollY) {
+        // Scrolling up
+        setIsVisible(true);
+      } else if (window.scrollY > lastScrollY) {
+        // Scrolling down
+        setIsVisible(false);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
+
   return (
     <>
       <div
         ref={navContainerRef}
-        className="fixed inset-x-6 top-4 z-[100] h-16 border-none backdrop-blur-md rounded-2xl"
+        className={`fixed inset-x-6 top-4 z-[100] h-16 border-none backdrop-blur-md rounded-2xl transition-all duration-300 ${
+          isVisible ? "translate-y-0" : "-translate-y-[150%]"
+        }`}
       >
         <header className="absolute top-1/2 w-full -translate-y-1/2">
           <nav className="flex size-full items-center justify-between px-4 py-2 bg-white/10 backdrop-blur-lg rounded-2xl overflow-hidden border border-white/20 shadow-lg shadow-black/10 mix-blend-difference">

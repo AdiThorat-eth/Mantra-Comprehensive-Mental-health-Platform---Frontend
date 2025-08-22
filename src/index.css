@@ -224,6 +224,13 @@ body {
     background-repeat: "no-repeat";
   }
 
+  .tt8 {
+    background-image: url("./public/img/vv.png");
+    background-image: "cover";
+    background-position: "center";
+    background-repeat: "no-repeat";
+  }
+
   .animate-wave-pulse {
     animation: wave-pulse 4s ease-in-out infinite;
   }
@@ -236,5 +243,10 @@ body {
     50% {
       opacity: 0.7;
     }
+  }
+
+  .special-font ccc {
+    font-family: "circular";
+    font-weight: bold;
   }
 }

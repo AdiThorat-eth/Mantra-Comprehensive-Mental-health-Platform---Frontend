@@ -8,6 +8,7 @@ import Testimonial from "./components/Testimonial";
 import Price from "./components/Price";
 import Features from "./components/Features";
 import Footer from "./components/Footer";
+import FAQ from "./components/FAQ";
 
 // Loader Component
 const Loader = () => {
@@ -136,6 +137,10 @@ const App = () => {
 
       <section id="testimonial">
         <Testimonial />
+      </section>
+
+      <section id="faq">
+        <FAQ />
       </section>
 
       <section id="about">
