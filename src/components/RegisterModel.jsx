@@ -2,14 +2,17 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Eye, EyeOff, Mail, Lock, User } from "lucide-react";
 import { Card, CardBody } from "./Card";
+import { useAuth } from "../context/AuthContext";
 
 // --- START: LoginModal Component ---
 export const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
+  const { login, isLoading } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const [error, setError] = useState("");
 
   const handleInputChange = (e) => {
     setFormData({
@@ -18,12 +21,20 @@ export const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // In a real application, you would handle login logic here.
-    // For this demo, we'll just log the data.
-    console.log("Login attempt:", formData);
-    onClose(); // Close the modal after submission for demo purposes
+    setError("");
+    
+    try {
+      const result = await login(formData.email, formData.password);
+      if (result.success) {
+        onClose();
+      } else {
+        setError(result.error || "Login failed");
+      }
+    } catch (error) {
+      setError("Login failed. Please try again.");
+    }
   };
 
   // Enhanced close handler
@@ -134,6 +145,13 @@ export const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
                     </button>
                   </div>
 
+                  {/* Error Display */}
+                  {error && (
+                    <div className="text-red-400 text-sm text-center bg-red-900/20 border border-red-500/30 rounded-lg p-2">
+                      {error}
+                    </div>
+                  )}
+
                   {/* Forgot Password */}
                   <div className="text-right">
                     <button
@@ -147,9 +165,10 @@ export const LoginModal = ({ isOpen, onClose, onSwitchToRegister }) => {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500/70 shadow-lg"
+                    disabled={isLoading}
+                    className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold rounded-lg transition-all duration-200 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500/70 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Sign In
+                    {isLoading ? "Signing In..." : "Sign In"}
                   </button>
                 </form>
 
