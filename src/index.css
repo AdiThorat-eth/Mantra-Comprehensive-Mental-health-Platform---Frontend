@@ -98,6 +98,40 @@ body {
     border-color: #d1d5db;
   }
 
+  /* Chatbot animations */
+  @keyframes bounce {
+    0%, 20%, 53%, 80%, 100% {
+      transform: translate3d(0,0,0);
+    }
+    40%, 43% {
+      transform: translate3d(0, -30px, 0);
+    }
+    70% {
+      transform: translate3d(0, -15px, 0);
+    }
+    90% {
+      transform: translate3d(0, -4px, 0);
+    }
+  }
+
+  .animate-bounce {
+    animation: bounce 1s infinite;
+  }
+
+  /* Pulse animation for online indicator */
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: .5;
+    }
+  }
+
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
   .bg-background {
     background-color: #ffffff;
   }
@@ -223,8 +257,7 @@ body {
     background-position: "center";
     background-repeat: "no-repeat";
   }
-
-  .tt8 {
+  .tt8{
     background-image: url("./public/img/vv.png");
     background-image: "cover";
     background-position: "center";
@@ -244,8 +277,7 @@ body {
       opacity: 0.7;
     }
   }
-
-  .special-font ccc {
+  .special-font ccc{
     font-family: "circular";
     font-weight: bold;
   }
