@@ -13,6 +13,8 @@ const Navbar = () => {
   const [modalType, setModalType] = useState(null); // 'login', 'register', or null
   const { isAuthenticated, user, logout } = useAuth();
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const handleProductClick = () => {
     console.log("Product button clicked!");
@@ -23,11 +25,33 @@ const Navbar = () => {
   const handleOpenRegister = () => setModalType("register");
   const handleCloseModal = () => setModalType(null);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY && window.scrollY > 100) {
+        // Scrolling down past a certain threshold
+        setIsVisible(false);
+        setIsProfileMenuOpen(false); // Close profile menu on scroll down
+      } else {
+        // Scrolling up
+        setIsVisible(true);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
+
   return (
     <>
       <div
         ref={navContainerRef}
-        className="fixed inset-x-6 top-4 z-[100] h-16 border-none backdrop-blur-md rounded-2xl"
+        className={`fixed inset-x-6 top-4 z-[100] h-16 border-none backdrop-blur-md rounded-2xl transition-all duration-300 ${
+          isVisible ? "translate-y-0" : "-translate-y-[150%]"
+        }`}
       >
         <header className="absolute top-1/2 w-full -translate-y-1/2">
           <nav className="flex size-full items-center justify-between px-4 py-2 bg-white/10 backdrop-blur-lg rounded-2xl overflow-visible border border-white/20 shadow-lg shadow-black/10 mix-blend-difference">
@@ -35,7 +59,7 @@ const Navbar = () => {
               {/* Logos - Fixed positioning */}
               <div className="flex-shrink-0 flex items-center gap-3">
                 <img
-                  className="h-10 w-10 border rounded-full" // Fixed typo: 'bordr' to 'border'
+                  className="h-10 w-10 border rounded-full"
                   src="/img/logo.png"
                   alt="mantra logo"
                 />
