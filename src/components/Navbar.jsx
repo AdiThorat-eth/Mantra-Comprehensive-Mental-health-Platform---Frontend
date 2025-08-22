@@ -1,17 +1,18 @@
 // Navbar.jsx
 import React, { useRef, useState, useEffect } from "react";
 import { TiLocationArrow } from "react-icons/ti";
-import Button from "./Button";
-import { CgMenu } from "react-icons/cg";
+import Button from "./Button"; // Assuming this is used elsewhere or will be removed if not needed
+import { CgMenu } from "react-icons/cg"; // Not used in Navbar, can be removed
 
 // Import the modal components from RegisterModel.jsx
 import { LoginModal, RegisterModal } from "./RegisterModel";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const navContainerRef = useRef(null);
   const [modalType, setModalType] = useState(null); // 'login', 'register', or null
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const { isAuthenticated, user, logout } = useAuth();
+  const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
   const handleProductClick = () => {
     console.log("Product button clicked!");
@@ -22,36 +23,14 @@ const Navbar = () => {
   const handleOpenRegister = () => setModalType("register");
   const handleCloseModal = () => setModalType(null);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      // Check if the current scroll position is less than the previous one
-      if (window.scrollY < lastScrollY) {
-        // Scrolling up
-        setIsVisible(true);
-      } else if (window.scrollY > lastScrollY) {
-        // Scrolling down
-        setIsVisible(false);
-      }
-      setLastScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollY]);
-
   return (
     <>
       <div
         ref={navContainerRef}
-        className={`fixed inset-x-6 top-4 z-[100] h-16 border-none backdrop-blur-md rounded-2xl transition-all duration-300 ${
-          isVisible ? "translate-y-0" : "-translate-y-[150%]"
-        }`}
+        className="fixed inset-x-6 top-4 z-[100] h-16 border-none backdrop-blur-md rounded-2xl"
       >
         <header className="absolute top-1/2 w-full -translate-y-1/2">
-          <nav className="flex size-full items-center justify-between px-4 py-2 bg-white/10 backdrop-blur-lg rounded-2xl overflow-hidden border border-white/20 shadow-lg shadow-black/10 mix-blend-difference">
+          <nav className="flex size-full items-center justify-between px-4 py-2 bg-white/10 backdrop-blur-lg rounded-2xl overflow-visible border border-white/20 shadow-lg shadow-black/10 mix-blend-difference">
             <div className="flex items-center gap-7 w-full relative">
               {/* Logos - Fixed positioning */}
               <div className="flex-shrink-0 flex items-center gap-3">
@@ -63,25 +42,60 @@ const Navbar = () => {
               </div>
 
               {/* Left Navigation Buttons - ONLY VISIBLE ON MD AND UP */}
-              <div className="absolute right-20 mr-5 flex-shrink-0 animate-shimmer hidden lg:flex">
-                <LiquidGlassButton
-                  id="Register"
-                  title="Register"
-                  onClick={handleOpenRegister}
-                />
-              </div>
+              {!isAuthenticated && (
+                <div className="absolute right-20 mr-5 flex-shrink-0 animate-shimmer hidden lg:flex">
+                  <LiquidGlassButton
+                    id="Register"
+                    title="Register"
+                    onClick={handleOpenRegister}
+                  />
+                </div>
+              )}
 
               {/* Spacer to push Play button to the right */}
               <div className="flex-grow"></div>
 
               {/* Right Play Button - ONLY VISIBLE ON MD AND UP */}
-              <div className="flex-shrink-0 text-white animate-shimmer hidden lg:flex">
-                <LiquidGlassButton
-                  id="Log-In"
-                  title="LogIn"
-                  variant="primary"
-                  onClick={handleOpenLogin}
-                />
+              <div className="flex-shrink-0 text-white animate-shimmer hidden lg:flex relative z-[200]">
+                {!isAuthenticated ? (
+                  <LiquidGlassButton
+                    id="Log-In"
+                    title="LogIn"
+                    variant="primary"
+                    onClick={handleOpenLogin}
+                  />
+                ) : (
+                  <>
+                    <LiquidGlassButton
+                      id="Profile"
+                      title={user?.firstName ? `Hi, ${user.firstName}` : "Profile"}
+                      variant="primary"
+                      onClick={() => setIsProfileMenuOpen((v) => !v)}
+                    />
+                    {isProfileMenuOpen && (
+                      <div className="absolute right-0 top-12 min-w-40 bg-white/95 text-black rounded-xl shadow-xl border border-gray-200 overflow-hidden">
+                        <button
+                          className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                          onClick={() => {
+                            setIsProfileMenuOpen(false);
+                            window.location.hash = "#profile";
+                          }}
+                        >
+                          Profile
+                        </button>
+                        <button
+                          className="w-full text-left px-4 py-2 hover:bg-gray-100"
+                          onClick={() => {
+                            setIsProfileMenuOpen(false);
+                            logout();
+                          }}
+                        >
+                          Log out
+                        </button>
+                      </div>
+                    )}
+                  </>
+                )}
               </div>
             </div>
           </nav>
@@ -92,17 +106,21 @@ const Navbar = () => {
       </div>
 
       {/* Modal Components */}
-      <LoginModal
-        isOpen={modalType === "login"}
-        onClose={handleCloseModal}
-        onSwitchToRegister={handleOpenRegister}
-      />
+      {!isAuthenticated && (
+        <>
+          <LoginModal
+            isOpen={modalType === "login"}
+            onClose={handleCloseModal}
+            onSwitchToRegister={handleOpenRegister}
+          />
 
-      <RegisterModal
-        isOpen={modalType === "register"}
-        onClose={handleCloseModal}
-        onSwitchToLogin={handleOpenLogin}
-      />
+          <RegisterModal
+            isOpen={modalType === "register"}
+            onClose={handleCloseModal}
+            onSwitchToLogin={handleOpenLogin}
+          />
+        </>
+      )}
     </>
   );
 };
