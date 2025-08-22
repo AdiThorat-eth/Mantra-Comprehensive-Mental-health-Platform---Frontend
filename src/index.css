@@ -218,51 +218,58 @@ body {
 
   .tt2 {
     background-image: url("./public/img/ss7.png");
-    background-image: "cover";
-    background-position: "center";
-    background-repeat: "no-repeat";
+    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   }
 
   .tt3 {
     background-image: url("./public/img/ss4.jpg");
-    background-image: "cover";
-    background-position: "center";
-    background-repeat: "no-repeat";
+    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   }
 
   .tt4 {
     background-image: url("./public/img/ss6.png");
-    background-image: "cover";
-    background-position: "center";
-    background-repeat: "no-repeat";
+    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   }
 
   .tt5 {
     background-image: url("./public/img/x.png");
-    background-image: "cover";
-    background-position: "center";
-    background-repeat: "no-repeat";
+    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   }
 
   .tt6 {
     background-image: url("./public/img/blue.jpg");
-    background-image: "cover";
-    background-position: "center";
-    background-repeat: "no-repeat";
+    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   }
 
   .tt7 {
     background-image: url("./public/img/z.png");
-    background-image: "cover";
-    background-position: "center";
-    background-repeat: "no-repeat";
+    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   }
   .tt8{
     background-image: url("./public/img/vv.png");
-    background-image: "cover";
-    background-position: "center";
-    background-repeat: "no-repeat";
+    background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   }
+
+  .tt9 {
+  background-image: url("./public/img/zz.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
   .animate-wave-pulse {
     animation: wave-pulse 4s ease-in-out infinite;
