@@ -1,48 +1,47 @@
 import React, { useState, useMemo, useRef } from "react";
 import { motion } from "framer-motion";
 
-// Expanded animated images for meditation, yoga, and breathing exercises
+// Yoga and Meditation relevant images (yoga poses and meditation)
 const meditationImages = [
   {
-    src: "/img/animated-breathing-1.gif",
-    alt: "Box Breathing Animation",
-    label: "Box Breathing",
+    src: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=400&q=80",
+    alt: "Mountain Pose (Tadasana)",
+    label: "Mountain Pose (Tadasana)",
   },
   {
-    src: "/img/animated-mindful-checkin.gif",
-    alt: "Mindful Check-in Animation",
-    label: "Mindful Check-in",
+    src: "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=400&q=80",
+    alt: "Tree Pose (Vrikshasana)",
+    label: "Tree Pose (Vrikshasana)",
   },
   {
-    src: "/img/animated-body-scan.gif",
-    alt: "Body Scan Animation",
-    label: "Body Scan",
+    src: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80",
+    alt: "Child's Pose (Balasana)",
+    label: "Child's Pose (Balasana)",
   },
   {
-    src: "/img/animated-calm-countdown.gif",
-    alt: "Calm Countdown Animation",
-    label: "Calm Countdown",
-  },
-  // Yoga and meditation poses
-  {
-    src: "/img/animated-yoga-mountain.gif",
-    alt: "Yoga Mountain Pose Animation",
-    label: "Mountain Pose",
+    src: "https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80",
+    alt: "Lotus Pose (Padmasana)",
+    label: "Lotus Pose (Padmasana)",
   },
   {
-    src: "/img/animated-yoga-tree.gif",
-    alt: "Yoga Tree Pose Animation",
-    label: "Tree Pose",
+    src: "https://images.unsplash.com/photo-1504196606672-aef5c9cefc92?auto=format&fit=crop&w=400&q=80",
+    alt: "Seated Meditation",
+    label: "Seated Meditation",
   },
   {
-    src: "/img/animated-yoga-child.gif",
-    alt: "Yoga Child's Pose Animation",
-    label: "Child's Pose",
+    src: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80",
+    alt: "Downward Dog (Adho Mukha Svanasana)",
+    label: "Downward Dog (Adho Mukha Svanasana)",
   },
   {
-    src: "/img/animated-meditation-sitting.gif",
-    alt: "Sitting Meditation Animation",
-    label: "Sitting Meditation",
+    src: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80",
+    alt: "Warrior II (Virabhadrasana II)",
+    label: "Warrior II (Virabhadrasana II)",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=400&q=80",
+    alt: "Meditation in Nature",
+    label: "Meditation in Nature",
   },
 ];
 
@@ -51,63 +50,71 @@ const cn = (...classes) => {
 };
 
 const Features = () => {
+  // State for PDF/article viewing
+  const [selected, setSelected] = useState(null);
+  const [pdfToView, setPdfToView] = useState(null);
+  const [pdfMeta, setPdfMeta] = useState(null);
+
   const data = useMemo(
     () => ({
       sections: [
         {
           id: "pdf-1",
-          title: "Books & Articles for Difficult Times",
+          title: "Yoga & Meditation Information",
           description:
-            "Download free, open-access books and articles that offer support, understanding, and practical guidance for those feeling sad or depressed.",
+            "Explore trusted online resources about yoga postures, meditation techniques, and their benefits. Click to visit the official sites for more information.",
           icon: "📄",
           color: "cyan",
           type: "pdfs",
           items: [
             {
-              id: "pdf-201",
-              title: "Feeling Good: The New Mood Therapy (David D. Burns, MD) - Excerpt",
-              format: "PDF",
-              pages: 32,
-              url: "https://www.feelinggood.com/wp-content/uploads/2014/01/Feeling-Good-Handbook-David-Burns.pdf",
+              id: "yoga-101",
+              title: "Yoga Basics: Poses, Types, History & Benefits (Yoga Journal)",
+              format: "Link",
+              url: "https://www.yogajournal.com/yoga-101/",
+              readUrl: "https://www.yogajournal.com/yoga-101/",
+              description: "Comprehensive guide to yoga basics, including foundational poses, types of yoga, and health benefits.",
+              source: "Yoga Journal"
             },
             {
-              id: "pdf-202",
-              title: "Depression: What You Need to Know (NIH Booklet)",
-              format: "PDF",
-              pages: 24,
-              url: "https://www.nimh.nih.gov/sites/default/files/documents/health/publications/depression-what-you-need-to-know/21-mh-8079-depression-what-you-need-to-know_0.pdf",
+              id: "yoga-102",
+              title: "Beginner Yoga Poses (Verywell Fit)",
+              format: "Link",
+              url: "https://www.verywellfit.com/beginner-yoga-poses-3566747",
+              readUrl: "https://www.verywellfit.com/beginner-yoga-poses-3566747",
+              description: "A list of beginner-friendly yoga poses with step-by-step instructions and images.",
+              source: "Verywell Fit"
             },
             {
-              id: "pdf-203",
-              title: "The Mindful Way Through Depression (Sample Chapter)",
-              format: "PDF",
-              pages: 18,
-              url: "https://www.guilford.com/add/mindful-way-ch1.pdf",
+              id: "yoga-103",
+              title: "Meditation: A Simple, Fast Way to Reduce Stress (Mayo Clinic)",
+              format: "Link",
+              url: "https://www.mayoclinic.org/tests-procedures/meditation/in-depth/meditation/art-20045858",
+              readUrl: "https://www.mayoclinic.org/tests-procedures/meditation/in-depth/meditation/art-20045858",
+              description: "Learn about meditation techniques, benefits, and how to get started.",
+              source: "Mayo Clinic"
             },
             {
-              id: "pdf-204",
-              title: "Coping with Depression (Royal College of Psychiatrists)",
-              format: "PDF",
-              pages: 8,
-              url: "https://www.rcpsych.ac.uk/docs/default-source/improving-care/better-mh-policy/college-reports/college-report-cr225.pdf",
+              id: "yoga-104",
+              title: "Yoga for Mental Health (Harvard Health Publishing)",
+              format: "Link",
+              url: "https://www.health.harvard.edu/mind-and-mood/yoga-for-better-mental-health",
+              readUrl: "https://www.health.harvard.edu/mind-and-mood/yoga-for-better-mental-health",
+              description: "How yoga can help improve mental health and emotional well-being.",
+              source: "Harvard Health Publishing"
             },
             {
-              id: "pdf-205",
-              title: "How to Support a Friend with Depression (HelpGuide Article)",
-              format: "PDF",
-              pages: 6,
-              url: "https://www.helpguide.org/articles/depression/helping-someone-with-depression.htm",
-            },
-            {
-              id: "pdf-206",
-              title: "The Science of Well-Being (Yale University) - Course Notes",
-              format: "PDF",
-              pages: 40,
-              url: "https://static.coursera.org/asset/v1/1Qn2ATmNnS1QvA4k6QqvOB0fOkHnQ2m30IZHuZOKA3Jw6Q/asset/Notes_The_Science_of_Well-Being.pdf",
+              id: "yoga-105",
+              title: "Meditation for Beginners (Headspace)",
+              format: "Link",
+              url: "https://www.headspace.com/meditation/meditation-for-beginners",
+              readUrl: "https://www.headspace.com/meditation/meditation-for-beginners",
+              description: "A beginner's guide to meditation, including tips and guided sessions.",
+              source: "Headspace"
             },
           ],
           actions: [
-            { label: "Browse Downloads", type: "primary", action: "open_section" },
+            { label: "Browse Resources", type: "primary", action: "open_section" },
           ],
         },
         {
@@ -197,36 +204,60 @@ const Features = () => {
         },
         {
           id: "med-1",
-          title: "Basic Meditation & Breathing",
+          title: "Basic Meditation & Yoga Poses",
           description:
-            "Beginner-friendly meditations and simple breathing exercises to reduce stress and increase focus.",
+            "Beginner-friendly yoga postures and meditation exercises to reduce stress and increase focus.",
           icon: "🧘",
           color: "green",
           type: "meditation",
           items: [
             {
-              id: "m-101",
-              title: "Box Breathing (4×4×4×4)",
-              duration: "5:30",
-              kind: "breathwork",
+              id: "m-201",
+              title: "Mountain Pose (Tadasana)",
+              duration: "2:00",
+              kind: "Yoga Pose",
             },
             {
-              id: "m-102",
-              title: "5-Minute Mindful Check-in",
+              id: "m-202",
+              title: "Tree Pose (Vrikshasana)",
+              duration: "2:30",
+              kind: "Yoga Pose",
+            },
+            {
+              id: "m-203",
+              title: "Child's Pose (Balasana)",
+              duration: "3:00",
+              kind: "Yoga Pose",
+            },
+            {
+              id: "m-204",
+              title: "Lotus Pose (Padmasana)",
+              duration: "4:00",
+              kind: "Meditation",
+            },
+            {
+              id: "m-205",
+              title: "Seated Meditation",
               duration: "5:00",
-              kind: "mindfulness",
+              kind: "Meditation",
             },
             {
-              id: "m-103",
-              title: "Body Scan (Short)",
-              duration: "8:20",
-              kind: "relaxation",
+              id: "m-206",
+              title: "Downward Dog (Adho Mukha Svanasana)",
+              duration: "2:30",
+              kind: "Yoga Pose",
             },
             {
-              id: "m-104",
-              title: "Calm Countdown (5-4-3-2-1)",
-              duration: "4:10",
-              kind: "grounding",
+              id: "m-207",
+              title: "Warrior II (Virabhadrasana II)",
+              duration: "3:00",
+              kind: "Yoga Pose",
+            },
+            {
+              id: "m-208",
+              title: "Meditation in Nature",
+              duration: "5:00",
+              kind: "Meditation",
             },
           ],
           actions: [
@@ -282,10 +313,12 @@ const Features = () => {
     []
   );
 
-  const [selected, setSelected] = useState(null);
-
   const openSection = (section) => setSelected(section);
-  const closeModal = () => setSelected(null);
+  const closeModal = () => {
+    setSelected(null);
+    setPdfToView(null);
+    setPdfMeta(null);
+  };
 
   return (
     <div className="h-screen w-screen flex flex-col justify-center items-center relative text-white">
@@ -304,7 +337,7 @@ const Features = () => {
               Mental Health Resources
             </h1>
             <p className="text-sm text-gray-300 max-w-xl mx-auto">
-              Explore PDFs, videos, meditation exercises, and audio resources.
+              Explore yoga, meditation, videos, and audio resources.
             </p>
           </header>
 
@@ -322,7 +355,28 @@ const Features = () => {
       </div>
 
       {/* Modal */}
-      {selected && <SectionModal section={selected} onClose={closeModal} />}
+      {selected && (
+        <SectionModal
+          section={selected}
+          onClose={closeModal}
+          onPdfRead={(pdfUrl, meta) => {
+            setPdfToView(pdfUrl);
+            setPdfMeta(meta || null);
+          }}
+        />
+      )}
+
+      {/* PDF Viewer Modal */}
+      {pdfToView && (
+        <PdfViewerModal
+          pdfUrl={pdfToView}
+          onClose={() => {
+            setPdfToView(null);
+            setPdfMeta(null);
+          }}
+          meta={pdfMeta}
+        />
+      )}
     </div>
   );
 };
@@ -532,7 +586,79 @@ const VideoPlayer = ({ url, onEnded }) => (
   </div>
 );
 
-const SectionModal = ({ section, onClose }) => {
+// PDF Viewer Modal (in-app) - now with professional preview
+const PdfViewerModal = ({ pdfUrl, onClose, meta }) => {
+  // For links, just open in new tab, but keep modal for consistency
+  return (
+    <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-[1000] p-4">
+      <motion.div
+        className="max-w-3xl w-full h-[60vh] bg-white rounded-lg overflow-hidden relative flex flex-col shadow-2xl"
+        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
+        onClick={e => e.stopPropagation()}
+      >
+        {/* Professional Article Header */}
+        <div className="flex items-center justify-between p-4 bg-gradient-to-r from-indigo-500 to-purple-600">
+          <div className="flex items-center gap-3">
+            <span className="text-3xl">📄</span>
+            <div>
+              <div className="text-lg font-bold text-white">
+                {meta?.title || "Resource Preview"}
+              </div>
+              {meta?.source && (
+                <div className="text-xs text-indigo-100 font-medium mt-0.5">
+                  {meta.source}
+                </div>
+              )}
+            </div>
+          </div>
+          <button
+            className="text-white hover:bg-white/20 p-2 rounded-lg transition-colors"
+            onClick={onClose}
+            title="Close"
+          >
+            <span className="text-2xl">×</span>
+          </button>
+        </div>
+        {/* Article Description */}
+        {meta?.description && (
+          <div className="px-4 py-2 bg-indigo-50 border-b border-indigo-100 text-gray-700 text-sm">
+            {meta.description}
+          </div>
+        )}
+        {/* Resource Link Preview */}
+        <div className="flex-1 bg-gray-100 flex flex-col items-center justify-center">
+          <a
+            href={pdfUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-indigo-600 underline text-lg font-semibold"
+            style={{ wordBreak: "break-all" }}
+          >
+            Open Resource in New Tab
+          </a>
+        </div>
+        {/* Download and Open in New Tab */}
+        <div className="flex items-center justify-end gap-2 p-3 bg-gray-50 border-t border-gray-200">
+          <a
+            href={pdfUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition text-sm font-medium"
+            style={{ minWidth: 100, textAlign: "center" }}
+            title="Open in new tab"
+          >
+            Open in New Tab
+          </a>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
+const SectionModal = ({ section, onClose, onPdfRead }) => {
   // For audio playback state
   const [playingAudioId, setPlayingAudioId] = useState(null);
 
@@ -673,18 +799,26 @@ const SectionModal = ({ section, onClose }) => {
           >
             <span className="text-2xl relative z-[100]">📄</span>
             <span className="flex-grow text-white font-medium relative z-[100]">{f.title}</span>
-            <span className="text-gray-200 text-sm relative z-[100]">
-              {f.format} • {f.pages}p
-            </span>
-            <a
-              href={f.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-indigo-500 text-white px-4 py-2 rounded-md hover:bg-indigo-600 transition relative z-[100]"
-              download
-            >
-              Download
-            </a>
+            <div className="flex gap-2 relative z-[100]">
+              <a
+                href={f.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-emerald-500 text-white px-4 py-2 rounded-md hover:bg-emerald-600 transition"
+                style={{ minWidth: 80, textAlign: "center" }}
+                title="Open Resource"
+                onClick={e => {
+                  e.preventDefault();
+                  if (onPdfRead) onPdfRead(f.readUrl, {
+                    title: f.title,
+                    description: f.description,
+                    source: f.source,
+                  });
+                }}
+              >
+                View
+              </a>
+            </div>
           </div>
         ))}
       </div>
@@ -747,13 +881,12 @@ const SectionModal = ({ section, onClose }) => {
   }
 
   if (section.type === "meditation") {
-    // Add slide scrolling for animated images
-    // We'll use a scrollable container with snap-x and snap-center for smooth slide scrolling
+    // Add slide scrolling for yoga/meditation images
     return wrap(
       <div className="space-y-6 relative z-[100] max-h-[60vh] overflow-y-auto pr-2">
-        {/* Animated exercise images with slide scrolling */}
+        {/* Yoga and Meditation images with slide scrolling */}
         <div className="mb-4">
-          <div className="text-white font-semibold mb-2 text-center">Exercise Animations</div>
+          <div className="text-white font-semibold mb-2 text-center">Yoga & Meditation Poses</div>
           <div
             className="flex gap-6 overflow-x-auto pb-2 scroll-smooth snap-x snap-mandatory"
             style={{ WebkitOverflowScrolling: "touch" }}
@@ -764,20 +897,22 @@ const SectionModal = ({ section, onClose }) => {
                 className="flex flex-col items-center min-w-[160px] max-w-[180px] bg-white/10 rounded-lg p-3 border border-white/10 shadow-md snap-center"
                 style={{ flex: "0 0 auto" }}
               >
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  className="w-28 h-28 object-contain rounded-lg mb-2 animate-pulse"
-                  loading="lazy"
-                  draggable={false}
-                  style={{ background: "#222" }}
-                />
+                <a href={img.src} target="_blank" rel="noopener noreferrer">
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className="w-28 h-28 object-contain rounded-lg mb-2 animate-pulse"
+                    loading="lazy"
+                    draggable={false}
+                    style={{ background: "#222" }}
+                  />
+                </a>
                 <span className="text-xs text-white font-medium">{img.label}</span>
               </div>
             ))}
           </div>
         </div>
-        {/* Meditation exercise list */}
+        {/* Yoga and Meditation exercise list */}
         <div className="space-y-3">
           {section.items.map((m) => (
             <div
