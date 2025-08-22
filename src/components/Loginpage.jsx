@@ -1,14 +1,29 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const LoginPage = () => {
+  const { login, isLoading } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Handle login logic here
+    setError("");
+    
+    try {
+      const result = await login(email, password);
+      if (result.success) {
+        // Redirect or show success message
+        console.log("Login successful!");
+      } else {
+        setError(result.error || "Login failed");
+      }
+    } catch (error) {
+      setError("Login failed. Please try again.");
+    }
   };
 
   return (
@@ -37,8 +52,13 @@ const LoginPage = () => {
               />
             </Form.Group>
 
-            <Button variant="primary" type="submit" className="mt-3">
-              Login
+            {error && (
+              <div className="alert alert-danger mt-3" role="alert">
+                {error}
+              </div>
+            )}
+            <Button variant="primary" type="submit" className="mt-3" disabled={isLoading}>
+              {isLoading ? "Logging in..." : "Login"}
             </Button>
           </Form>
           <p className="mt-3">
