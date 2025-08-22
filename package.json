@@ -19,7 +19,6 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-icons": "^5.5.0",
-    "react-router-dom": "^7.8.1",
     "react-scroll": "^1.9.3",
     "three": "^0.178.0"
   },
@@ -27,7 +26,7 @@
     "@eslint/js": "^9.30.1",
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "@vitejs/plugin-react": "^4.6.0",
+    "@vitejs/plugin-react": "^4.7.0",
     "autoprefixer": "^10.4.21",
     "eslint": "^9.30.1",
     "eslint-plugin-react-hooks": "^5.2.0",
@@ -35,6 +34,6 @@
     "globals": "^16.3.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17",
-    "vite": "^7.0.4"
+    "vite": "^7.1.3"
   }
 }
