@@ -1,7 +1,7 @@
 // MiniNavbar.jsx
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { CgMenu } from "react-icons/cg";
 import { LoginModal, RegisterModal } from "./RegisterModel";
 import { useAuth } from "../context/AuthContext";
@@ -14,6 +14,8 @@ const MiniNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [modalType, setModalType] = useState(null); // 'login', 'register', or null
   const { isAuthenticated, user, logout } = useAuth();
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const handleOpenLogin = () => {
     setModalType("login");
@@ -142,12 +144,35 @@ const MiniNavbar = () => {
     timeline.current.reverse();
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if the current scroll position is less than the previous one
+      if (window.scrollY < lastScrollY) {
+        // Scrolling up
+        setIsVisible(true);
+      } else if (window.scrollY > lastScrollY && window.scrollY > 100) {
+        // Scrolling down past a certain threshold
+        setIsVisible(false);
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
+
   return (
     <>
       {/* Menu Button - ONLY VISIBLE ON SMALLER SCREENS (hidden on lg and up) */}
-      <div className="fixed right-10 top-7 flex items-center gap-3 flex-shrink-0 z-[101] lg:hidden">
+      <div
+        className={`fixed right-10 flex items-center gap-3 flex-shrink-0 z-[101] lg:hidden transition-all duration-300 ${
+          isVisible ? "top-7" : "-top-20"
+        }`}
+      >
         {" "}
-        {/* Added lg:hidden */}
         <button
           className={`h-10 w-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 ${
             isOpen
