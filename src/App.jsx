@@ -14,8 +14,8 @@ import Chatbot from "./components/Chatbot";
 import FAQ from "./components/FAQ";
 
 // ✅ Import auth pages
-import LoginPage from "./pages/Loginpage";
-import RegisterPage from "./pages/Register";
+import LoginPage from "./components/Loginpage";
+import RegisterPage from "./components/Register";
 
 // Loader Component
 const Loader = () => {
