@@ -32,9 +32,9 @@ const Footer = memo(() => {
 
   const ourServices = [
     "Primary Care",
-    "Readable Reasources",
-    "Visual Reasources",
-    "Audio Reasources",
+    "Readable Resources",
+    "Visual Resources",
+    "Audio Resources",
     "24/7 AI Support",
   ];
 
@@ -264,10 +264,10 @@ const Footer = memo(() => {
             </path>
           </svg>
         </div>
-        {/* Scroll to top button */}
+        {/* Scroll to top button - Repositioned to avoid chatbot overlap */}
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 p-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 z-50 hover:rotate-12"
+          className="fixed bottom-8 left-8 p-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full shadow-lg hover:shadow-xl transform hover:scale-110 transition-all duration-300 z-50 hover:rotate-12"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >

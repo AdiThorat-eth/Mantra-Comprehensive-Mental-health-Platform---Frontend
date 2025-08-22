@@ -100,10 +100,15 @@ body {
 
   /* Chatbot animations */
   @keyframes bounce {
-    0%, 20%, 53%, 80%, 100% {
-      transform: translate3d(0,0,0);
+    0%,
+    20%,
+    53%,
+    80%,
+    100% {
+      transform: translate3d(0, 0, 0);
     }
-    40%, 43% {
+    40%,
+    43% {
       transform: translate3d(0, -30px, 0);
     }
     70% {
@@ -120,11 +125,12 @@ body {
 
   /* Pulse animation for online indicator */
   @keyframes pulse {
-    0%, 100% {
+    0%,
+    100% {
       opacity: 1;
     }
     50% {
-      opacity: .5;
+      opacity: 0.5;
     }
   }
 
@@ -219,57 +225,57 @@ body {
   .tt2 {
     background-image: url("./public/img/ss7.png");
     background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   .tt3 {
     background-image: url("./public/img/ss4.jpg");
     background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   .tt4 {
     background-image: url("./public/img/ss6.png");
     background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   .tt5 {
     background-image: url("./public/img/x.png");
     background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   .tt6 {
     background-image: url("./public/img/blue.jpg");
     background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   .tt7 {
     background-image: url("./public/img/z.png");
     background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
   }
-  .tt8{
+  .tt8 {
     background-image: url("./public/img/vv.png");
     background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
   .tt9 {
-  background-image: url("./public/img/zz.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
+    background-image: url("./public/img/zz.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
 
   .animate-wave-pulse {
     animation: wave-pulse 4s ease-in-out infinite;
@@ -284,7 +290,7 @@ body {
       opacity: 0.7;
     }
   }
-  .special-font ccc{
+  .special-font ccc {
     font-family: "circular";
     font-weight: bold;
   }
