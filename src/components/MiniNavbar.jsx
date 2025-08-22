@@ -1,9 +1,10 @@
 // MiniNavbar.jsx
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { CgMenu } from "react-icons/cg";
 import { LoginModal, RegisterModal } from "./RegisterModel";
+import { useAuth } from "../context/AuthContext";
 
 const MiniNavbar = () => {
   const navRef = useRef(null);
@@ -12,8 +13,7 @@ const MiniNavbar = () => {
   const timeline = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
   const [modalType, setModalType] = useState(null); // 'login', 'register', or null
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  const { isAuthenticated, user, logout } = useAuth();
 
   const handleOpenLogin = () => {
     setModalType("login");
@@ -68,8 +68,27 @@ const MiniNavbar = () => {
         closeMenu();
       },
     },
-    { name: "Register", action: handleOpenRegister },
-    { name: "Log in", action: handleOpenLogin },
+    ...(isAuthenticated
+      ? [
+          {
+            name: user?.firstName ? `Hi, ${user.firstName}` : "Profile",
+            action: () => {
+              window.location.href = "#profile";
+              closeMenu();
+            },
+          },
+          {
+            name: "Log out",
+            action: () => {
+              logout();
+              closeMenu();
+            },
+          },
+        ]
+      : [
+          { name: "Register", action: handleOpenRegister },
+          { name: "Log in", action: handleOpenLogin },
+        ]),
   ];
 
   useGSAP(() => {
@@ -123,34 +142,12 @@ const MiniNavbar = () => {
     timeline.current.reverse();
   };
 
-  useEffect(() => {
-    const handleScroll = () => {
-      // Check if the current scroll position is less than the previous one
-      if (window.scrollY < lastScrollY) {
-        // Scrolling up
-        setIsVisible(true);
-      } else if (window.scrollY > lastScrollY) {
-        // Scrolling down
-        setIsVisible(false);
-      }
-      setLastScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollY]);
-
   return (
     <>
       {/* Menu Button - ONLY VISIBLE ON SMALLER SCREENS (hidden on lg and up) */}
-      <div
-        className={`fixed right-10 flex items-center gap-3 flex-shrink-0 z-[101] lg:hidden transition-all duration-300 ${
-          isVisible ? "top-7" : "-top-20"
-        }`}
-      >
+      <div className="fixed right-10 top-7 flex items-center gap-3 flex-shrink-0 z-[101] lg:hidden">
+        {" "}
+        {/* Added lg:hidden */}
         <button
           className={`h-10 w-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 ${
             isOpen
@@ -192,23 +189,27 @@ const MiniNavbar = () => {
           <div className="font-circular">
             <p className="tracking-wider text-white/50">Email</p>
             <p className="text-xl tracking-widest lowercase text-pretty">
-              mantra.care.in1@gmail.com
+              Mantra.care@xyz.com
             </p>
           </div>
         </div>
       </nav>
 
       {/* Render Modals */}
-      <LoginModal
-        isOpen={modalType === "login"}
-        onClose={handleCloseModal}
-        onSwitchToRegister={handleOpenRegister}
-      />
-      <RegisterModal
-        isOpen={modalType === "register"}
-        onClose={handleCloseModal}
-        onSwitchToLogin={handleOpenLogin}
-      />
+      {!isAuthenticated && (
+        <>
+          <LoginModal
+            isOpen={modalType === "login"}
+            onClose={handleCloseModal}
+            onSwitchToRegister={handleOpenRegister}
+          />
+          <RegisterModal
+            isOpen={modalType === "register"}
+            onClose={handleCloseModal}
+            onSwitchToLogin={handleOpenLogin}
+          />
+        </>
+      )}
     </>
   );
 };
