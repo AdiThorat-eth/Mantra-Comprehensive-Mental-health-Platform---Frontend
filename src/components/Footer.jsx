@@ -74,18 +74,18 @@ const Footer = memo(() => {
             <div className="space-y-4 transform hover:scale-105 transition-all duration-500 group">
               <h4 className="text-lg font-semibold text-gray-900 mb-4 relative group-hover:text-blue-800 transition-colors duration-300">
                 Contact Us
-                <div className="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full group-hover:w-full transition-all duration-500"></div>
+                <div className="absolute bottom-0 left-0 w-12 h-0.5 bg-gradient-to-r from-blue-S500 to-purple-500 rounded-full group-hover:w-full transition-all duration-500"></div>
               </h4>
               <div className="space-y-3 text-gray-800">
                 <a
-                  href="mailto:mantra.care@xyz.com"
+                  href="mailto:mantra.care.in1@gmail.com"
                   className="group/item flex items-center space-x-3 hover:text-black transition-all duration-300 transform hover:translate-x-2"
                 >
                   <div className="p-2 bg-gray-300/50 group-hover/item:bg-blue-600 group-hover/item:text-white rounded-lg transition-all duration-300">
                     <Mail className="w-4 h-4" />
                   </div>
                   <span className="group-hover/item:translate-x-1 transition-transform duration-300">
-                    mantra.care@xyz.com
+                    mantra.care.in1@gmail.com
                   </span>
                 </a>
                 <div className="flex items-center space-x-3 hover:translate-x-2 transition-transform duration-300 group/item">

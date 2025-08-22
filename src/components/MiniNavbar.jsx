@@ -168,7 +168,7 @@ const MiniNavbar = () => {
           <div className="font-circular">
             <p className="tracking-wider text-white/50">Email</p>
             <p className="text-xl tracking-widest lowercase text-pretty">
-              Mantra.care@xyz.com
+              mantra.care.in1@gmail.com
             </p>
           </div>
         </div>
