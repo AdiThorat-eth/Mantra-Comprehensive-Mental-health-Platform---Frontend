@@ -329,7 +329,7 @@ const Features = () => {
         <div className="absolute bottom-0 left-1/3 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="absolute h-screen w-[96vw] rr tt9 rrCenter flex flex-col justify-center items-center overflow-y-hidden">
+      <div className="absolute h-[96vh] w-[96vw] rr tt9 rrCenter flex flex-col justify-center items-center overflow-y-hidden">
         <div className="relative z-10 w-full h-full flex flex-col justify-center items-center px-4">
           {/* Header - Compact */}
           <header className="text-center mb-6 flex-shrink-0">

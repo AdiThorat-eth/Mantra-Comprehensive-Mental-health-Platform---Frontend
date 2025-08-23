@@ -277,6 +277,34 @@ body {
     background-repeat: no-repeat;
   }
 
+  .tt10 {
+    background-image: url("./public/img/zzz.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .tt11 {
+    background-image: url("./public/img/xxx.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .tt12 {
+    background-image: url("./public/img/xxxx.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .tt13 {
+    background-image: url("./public/img/bbb.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
   .animate-wave-pulse {
     animation: wave-pulse 4s ease-in-out infinite;
   }

@@ -94,7 +94,7 @@ export default function FaqPage() {
 
   return (
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 flex items-center justify-center relative overflow-hidden">
-      <div className="absolute h-screen w-[96vw] rr tt8 rrCenter flex flex-col justify-center items-center">
+      <div className="absolute h-[96vh] w-[96vw] rr tt8 rrCenter flex flex-col justify-center items-center">
         <div className="max-w-4xl w-full space-y-6 relative z-10 px-4">
           {/* Header */}
           <div className="text-center space-y-4">

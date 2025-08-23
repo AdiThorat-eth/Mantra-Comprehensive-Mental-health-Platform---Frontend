@@ -10,12 +10,15 @@ import Testimonial from "./components/Testimonial";
 import Price from "./components/Price";
 import Features from "./components/Features";
 import Footer from "./components/Footer";
-import Chatbot from "./components/Chatbot"; 
+import Chatbot from "./components/Chatbot";
 import FAQ from "./components/FAQ";
-
-// ✅ Import auth pages
 import LoginPage from "./components/Loginpage";
 import RegisterPage from "./components/Register";
+import MoodTracker from "./components/MoodTracker";
+import MeditationHub from "./components/MeditationHub";
+import CrisisSupport from "./components/CrisisSupport";
+import Doctor from "./components/Doctor";
+import MentalHealthTest from "./components/MentalHealthTest";
 
 // Loader Component
 const Loader = () => {
@@ -115,20 +118,40 @@ const App = () => {
                   <Services />
                 </section>
 
+                <section id="moodtracker">
+                  <MoodTracker />
+                </section>
+
+                <section id="mentalhealthtest">
+                  <MentalHealthTest />
+                </section>
+
                 <section id="price">
                   <Price />
+                </section>
+
+                <section id="doctor">
+                  <Doctor />
                 </section>
 
                 <section id="features">
                   <Features />
                 </section>
 
+                {/* <section id="Meditationhub">
+                  <MeditationHub />
+                </section> */}
+
                 <section id="testimonial">
                   <Testimonial />
                 </section>
 
                 <section id="faq">
-                  <FAQ /> 
+                  <FAQ />
+                </section>
+
+                <section id="crisissupport">
+                  <CrisisSupport />
                 </section>
 
                 <section id="about">
