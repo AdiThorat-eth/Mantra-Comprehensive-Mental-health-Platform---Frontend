@@ -52,7 +52,7 @@ const CrisisSupport = () => {
         <div className="absolute top-20 -right-10 w-96 h-96 bg-orange-500/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="absolute h-screen w-[96vw] rr bc rrCenter flex flex-col justify-center items-center overflow-hidden">
+      <div className="absolute h-screen w-[96vw] rr tt13 rrCenter flex flex-col justify-center items-center overflow-hidden">
         <div className="relative z-10 w-full h-full flex flex-col justify-center items-center px-4">
           {currentView === 'home' && (
             <motion.div
